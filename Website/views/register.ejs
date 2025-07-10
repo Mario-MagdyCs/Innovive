@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Select Your Role</title>
+    <link rel="stylesheet" href="/css/registration.css">
+    <style>
+        .subtext {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .role-selection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .role-card {
+            flex: 1;
+            padding: 30px;
+            border: 3px solid #ccc;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #fff;
+            margin: 0 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .role-card img {
+            width: 150px;
+            margin-bottom: 15px;
+        }
+        .role-card:hover, .role-card.selected {
+            border-color: #28a745;
+            background-color: #e9f5ec;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        Step 1
+    </div>
+    <div class="container">
+        <h2>Select Your Role</h2>
+        <p class="subtext">To start your journey, choose the role that best describes you.</p>
+        <div class="role-selection">
+            <div class="role-card" id="enthusiast" onclick="selectRole('enthusiast')">
+                <img src="/images/i3.jpg" alt="Enthusiast">
+                <p><strong>Enthusiast</strong></p>
+                <p>For hobbyists, DIY creators, and personal users</p>
+            </div>
+            <div class="role-card" id="industrial" onclick="selectRole('industrial')">
+                <img src="/images/i4.jpg" alt="Industrial User">
+                <p><strong>Industrial User</strong></p>
+                <p>For businesses, manufacturers, and commercial use</p>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="proceedToNextStep()">Next</button>
+    </div>
+
+    <script>
+        let selectedRole = '';
+        
+        function selectRole(role) {
+            document.getElementById('enthusiast').classList.remove('selected');
+            document.getElementById('industrial').classList.remove('selected');
+            document.getElementById(role).classList.add('selected');
+            selectedRole = role;
+        }
+        
+        function proceedToNextStep() {
+            if (selectedRole) {
+                localStorage.setItem("userRole", selectedRole); // Store the selection
+                if (selectedRole === "enthusiast") {
+                    window.location.href = "/register-enthusiast/step2"; // Redirect to enthusiast page
+                } else {
+                    window.location.href = "/register-industrial/step2"; // Redirect to industrial user page
+                }
+            } else {
+                alert("Please select a role to continue.");
+            }
+        }
+
+    </script>
+</body>
+</html>

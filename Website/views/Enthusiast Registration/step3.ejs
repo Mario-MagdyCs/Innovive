@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3 - Household Waste Items</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 3 of 5
+    </div>
+    <div class="progress-bar" style="width: 60%;">
+        <div class="progress"></div>
+    </div>
+    <div class="container">
+        <h2>What Waste Items Do You Have Most?</h2>
+        <p class="subtext">Select the types of household waste you commonly generate.</p>
+        <form id="waste-form">
+            <span class="form-group">
+                <label for="plastic-bottles">
+                    <input type="checkbox" id="plastic-bottles" name="waste" value="Plastic Bottles">
+                    <img src="/images/items/plastic-bottle.png" alt="Plastic Bottle">
+                    Plastic Bottles
+                </label>
+                <label for="glass-bottles">
+                    <input type="checkbox" id="glass-bottles" name="waste" value="Glass Bottles">
+                    <img src="/images/items/glass-bottle.png" alt="Glass Bottle">
+                    Glass Bottles
+                </label>
+                <label for="glass-jars">
+                    <input type="checkbox" id="glass-jars" name="waste" value="Glass Jars">
+                    <img src="/images/items/glass-jar.png" alt="Glass Jar">
+                    Glass Jars
+                </label>
+                <label for="paper">
+                    <input type="checkbox" id="paper" name="waste" value="Paper">
+                    <img src="/images/items/paper.png" alt="Paper">
+                    Paper
+                </label>
+                <label for="plastic-containers">
+                    <input type="checkbox" id="plastic-containers" name="waste" value="Plastic Containers">
+                    <img src="/images/items/plastic-box.png" alt="Pladtic Container">
+                    Plastic Containers
+                </label>
+                <label for="metal-cans">
+                    <input type="checkbox" id="metal-cans" name="waste" value="Metal Cans">
+                    <img src="/images/items/food-can.png" alt="Food Can">
+                    Metal Cans
+                </label>
+                <label>Other: <input type="text" name="waste_other"></label>
+            </span>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/auth/register/enthusiast-step2";
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

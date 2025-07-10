@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="nav-links">
+          <li class="active">
+            <a href="/admin" title="Admin Dashboard"><i class="fas fa-home"></i></a>
+          </li>
+          <li>
+            <a href="/adminUser" title="Admin Profile"><i class="fas fa-user"></i></a>
+          </li>
+          <li><a href="/admin-pending"><i class="fas fa-clock"></i></a></li>
+          <li>
+            <a href="products.html" title="Products"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+          <li>
+            <a href="orders.html" title="Orders"><i class="fas fa-bag-shopping"></i></a>
+          </li>
+          <li>
+            <a href="reports.html" title="Reports"><i class="fas fa-chart-line"></i></a>
+          </li>
+          <li>
+            <a href="messages.html" title="Messages"><i class="fas fa-comment-dots"></i></a>
+          </li>
+          <li>
+            <a href="settings.html" title="Settings"><i class="fas fa-gear"></i></a>
+          </li>
+        </ul>
+      </div>
+      
+
+    <div class="main-content">
+     
+
+        <!-- Top Section: Summary + Weekly Projects -->
+<div class="dashboard-section">
+    <div class="dashboard-summary">
+      <div class="dashboard-header">
+        <h2>Platform Overview</h2>
+        <p>Key Metrics</p>
+      </div>
+  
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <div class="icon" style="color: #27ae60;"><i class="fas fa-file-alt"></i></div>
+          <div class="details">
+              <h3><%= sharedPostsCount %></h3>
+              <p>Number of Posts</p>
+          </div>
+      </div>
+      <div class="dashboard-card">
+        <div class="icon" style="color: #2980b9;"><i class="fas fa-paint-brush"></i></div>
+        <div class="details">
+            <h3><%= totalProjectsCount %></h3>
+            <p>DIY Projects Generated</p>
+        </div>
+    </div>
+    <div class="dashboard-card">
+      <div class="icon" style="color: #f39c12;"><i class="fas fa-users"></i></div>
+      <div class="details">
+          <h3><%= activeUsersCount %></h3>
+          <p>Active Users</p>
+      </div>
+  </div>
+  <div class="dashboard-card">
+    <div class="icon" style="color: #8e44ad;"><i class="fas fa-star"></i></div>
+    <div class="details">
+        <h3><%= totalPoints %></h3>
+        <p>Total Points Earned By All Users</p>
+    </div>
+</div>
+<div class="dashboard-card">
+  <div class="icon" style="color: #27ae60;"><i class="fas fa-thumbs-up"></i></div>
+  <div class="details">
+      <h3><%= totalLikes %></h3>
+      <p>Total Likes</p>
+  </div>
+</div>
+<div class="dashboard-card">
+  <div class="icon" style="color: #e74c3c;"><i class="fas fa-thumbs-down"></i></div>
+  <div class="details">
+      <h3><%= totalDislikes %></h3>
+      <p>Total Dislikes</p>
+  </div>
+</div>
+
+      </div>
+    </div>
+  
+    <div class="insights-section">
+  <h2>Weekly Projects Completed</h2>
+  <div class="insight-chart" id="weekly-chart" data-weekly-projects='<%= JSON.stringify(weeklyProjectsData) %>'>
+    <canvas id="weeklyProjectsChart"></canvas>
+  </div>
+</div>
+  </div>
+
+
+
+  
+  <!-- Bottom Section: Top 4 Recycled Materials -->
+  <div class="bottom-section">
+    <div class="top-materials">
+      <h2>Top Recycled Materials</h2>
+      <table class="materials-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Recycling Rate</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (topMaterials.length > 0) { %>
+            <% topMaterials.forEach(material => { %>
+              <tr>
+                <td><%= material.rank %></td>
+                <td><%= material.name %></td>
+                <td>
+                  <div class="popularity-bar <%= material.percentage >= 20 ? 'green' : material.percentage >= 15 ? 'orange' : 'red' %>">
+                    <div class="popularity-fill" data-width="<%= material.percentage %>"></div>
+                  </div>
+                </td>
+                <td>
+                  <span class="percentage <%= material.percentage >= 20 ? 'green' : material.percentage >= 15 ? 'orange' : 'red' %>">
+                    <%= material.percentage %>%</span>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="4">No recycled materials data available</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+
+<!-- 3 Section: Postss and Userss -->
+<div class="section-three">
+    <!-- Users List (Right) -->
+    <div class="customers-section">
+        <h2>Customers</h2>
+        <div class="search-bar">
+          <input type="text" placeholder="Search by name..." id="searchInput" oninput="filterCustomers()">
+        </div>
+      
+        <div class="table-container">
+          <table class="customer-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes(this)"></th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Points</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="customerTableBody">
+              <!-- User rows will be dynamically added with JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      
+        <div class="pagination">
+          <span id="data-info">Showing 1-5 out of 15 data</span>
+          <div class="page-controls" id="paginationControls">
+            <button class="page-btn" onclick="previousPage()">Previous</button>
+            <span id="pageNumbers"></span>
+            <button class="page-btn" onclick="nextPage()">Next</button>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+  </div>
+  
+  
+  
+  
+  
+  
+              
+            
+          
+          
+          
+        
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/admin.js"></script>
+    
+</html>
+

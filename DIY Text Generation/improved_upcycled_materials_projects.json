@@ -1,0 +1,146 @@
+{
+    "cardboard": {
+        "projects": [
+            "pet furniture",
+            "storage box",
+            "kids' playhouse",
+            "wall art",
+            "desk organizer"
+        ],
+        "visual_features": [
+            "cut-out doors and windows",
+            "layered cardboard textures",
+            "color-block painted surfaces",
+            "attached rope handles",
+            "reinforced corners"
+        ]
+    },
+    "plastic bottles": {
+        "projects": [
+            "planter",
+            "hanging lamp",
+            "bird feeder",
+            "storage container",
+            "toy"
+        ],
+        "visual_features": [
+            "cut bottle necks",
+            "tapered bases",
+            "perforated sides",
+            "threaded caps used as fasteners",
+            "twine hangers"
+        ]
+    },
+    "glass jars": {
+        "projects": [
+            "candle holder",
+            "soap dispenser",
+            "planter",
+            "storage jar",
+            "vase"
+        ],
+        "visual_features": [
+            "cork or pump lids",
+            "twine wrapped necks",
+            "transparent body with colored fill",
+            "painted labels",
+            "patterned glass textures"
+        ]
+    },
+    "tin cans": {
+        "projects": [
+            "lantern",
+            "pencil holder",
+            "cutlery organizer",
+            "planter",
+            "wind chime"
+        ],
+        "visual_features": [
+            "punched holes for light patterns",
+            "embossed ridges",
+            "metallic finish",
+            "twine or chain hangers",
+            "stacked or nested structures"
+        ]
+    },
+    "fabric scraps": {
+        "projects": [
+            "tote bag",
+            "pillow cover",
+            "patchwork blanket",
+            "wall art",
+            "headband"
+        ],
+        "visual_features": [
+            "stitched seams",
+            "mixed fabric patterns",
+            "textured or quilted surfaces",
+            "fabric knots and bows",
+            "frayed or raw edges"
+        ]
+    },
+    "glass bottles": {
+        "projects": [
+            "table lamp",
+            "decorative vase",
+            "torch",
+            "message bottle",
+            "wind chime"
+        ],
+        "visual_features": [
+            "tinted glass bodies",
+            "fairy lights inside",
+            "labels or etchings",
+            "sealed cork tops",
+            "rope or wire wraps"
+        ]
+    },
+    "aluminum cans": {
+        "projects": [
+            "candle holder",
+            "sculpture",
+            "mini planter",
+            "decor piece",
+            "pen holder"
+        ],
+        "visual_features": [
+            "cut and folded rims",
+            "embossed text or logos",
+            "shiny reflective surfaces",
+            "reformed curved shapes",
+            "attached wire bases"
+        ]
+    },
+    "plastic containers": {
+        "projects": [
+            "drawer organizer",
+            "planter",
+            "snack holder",
+            "jewelry box",
+            "tool caddy"
+        ],
+        "visual_features": [
+            "sectioned compartments",
+            "snap-on lids",
+            "handle inserts",
+            "transparent or semi-opaque walls",
+            "stackable modular design"
+        ]
+    },
+    "paper": {
+        "projects": [
+            "origami decor",
+            "gift box",
+            "greeting card",
+            "wall hanging",
+            "lampshade"
+        ],
+        "visual_features": [
+            "folded geometric patterns",
+            "die-cut shapes",
+            "layered paper designs",
+            "hand-drawn illustrations",
+            "perforated edges"
+        ]
+    }
+}

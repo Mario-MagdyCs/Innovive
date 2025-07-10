@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		<%=name%>
+	</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/global.css" rel="stylesheet">
+	<link href="/css/generated-projects.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/a">
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="https://kit.fontawesome.com/854a317bd6.js" crossorigin="anonymous"></script>
+	<style>
+		.loader-bar {
+			display: none;
+			height: 5px;
+			background: linear-gradient(90deg, #66bb6a, #2e7d32);
+			width: 0%;
+			border-radius: 0 0 10px 10px;
+			animation: growBar 1.5s infinite linear;
+			margin-top: 20px;
+		}
+
+		@keyframes growBar {
+			0% {
+				width: 0%;
+				opacity: 0.5;
+			}
+
+			50% {
+				width: 70%;
+				opacity: 1;
+			}
+
+			100% {
+				width: 100%;
+				opacity: 0.5;
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<%- include('partials/header')%>
+
+		<section>
+			<div class="blog-header">
+				<h1 class="blog-title">
+					<%=name%>
+				</h1>
+			
+				<!-- UPDATED Project Content Sections -->
+				<div class="project-details-container">
+					<!-- Project Introduction -->
+					<div class="project-meta">
+						<div class="difficulty-badge">
+							Difficulty: <%=level%>
+						</div>
+						<div class="time-required">
+							Time: 
+							<%if(level === "Beginner"){%>
+								1-2
+							<%}else if(level === "Intermediate"){%>
+								2-3
+							<%}else{%>
+								3-4
+							<%}%>
+							hours
+						</div>
+					</div>
+					<div class="blog-reactions">
+						<button class="reaction">❤️<span></span></button>
+						<%if(shared){%>
+							<button class="reaction">👍<span><%=likes.length%></span></button>
+							<button class="reaction">👎<span><%=dislikes.length%></span></button>
+						<%}%>
+					</div>
+				</div>
+				<!-- Main Content Area -->
+				<div class="main-content">
+					<div class="content-wrapper">
+						<!-- Left Content (Slideshow) -->
+						<div class="left-content">
+							<!-- Slideshow -->
+							<div class="slideshow-container">
+								<div class="mySlides">
+									<img src="<%=image%>" alt="Main DIY Design">
+								</div>
+								<% if(uploads.length> 0){%>
+									<% let count=1;%>
+									<%uploads.forEach(upload=> {%>
+									<div class="mySlides">
+										<img src="<%=upload.imagePath%>" alt="User Project <%=count%>">
+									</div>
+									<!-- Arrows -->
+									<a class="prev" onclick="plusSlides(-1)">❮</a>
+									<a class="next" onclick="plusSlides(1)">❯</a>
+
+									<!-- Thumbnails -->
+									<div class="thumbnail-row">
+										<img class="thumbnail" src="<%=upload.imagePath%>"
+												onclick="currentSlide('<%=count%>')">
+										<%count++;%>
+									</div>
+									<%})%>
+									<!-- Note below slideshow -->
+									<div class="slideshow-note">
+										These real projects were created using this material.
+									</div>
+								<%}%>
+							</div>
+						</div>
+
+						<!-- Right Content (Similar Posts) -->
+						<div class="right-content">
+							<div class="similar-posts">
+								<h3 class="similar-posts-title">Related Projects</h3>
+								<% relatedProjects.forEach(related => { %>
+									<a href="/projects/<%= related._id %>">
+								<div class="similar-post">
+									<img src="<%= related.image %>" alt="<%= related.name %>" />
+									<div class="similar-post-info">
+										<h4><%= related.name %></h4>
+										<p><%= related.mainmaterials[0] %> | ⏱️ <% if (related.level === "Beginner") { %>
+											1-2 hours
+										<% } else if (related.level === "Intermediate") { %>
+											2-3 hours
+										<% } else { %>
+											3-4 hours
+										<% } %> 
+									</p>
+									</div>
+								</div>
+							</a>
+								<% })%>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Materials Section -->
+				<div class="materials-section">
+					<h2 class="section-title">Materials You'll Need</h2>
+					<div class="materials-grid">
+						<% materials.forEach(material =>{%>
+						<div class="material-card">
+							<div class="material-info">
+								<h4><%=material.title%></h4>
+								<p><%=material.description%></p>
+								<!-- <span class="material-eco-tag">Upcycled</span> -->
+							</div>
+						</div>
+						<%})%>
+					</div>
+				</div>
+
+				<!-- Steps Section -->
+<h2 class="section-title">Step-by-Step Guide</h2>
+<div class="step-by-step-guide">
+  <% instructions.forEach((instruction, index) => { %>
+  <div class="step">
+    <div class="step-header">
+      <h3 class="step-title"><%= instruction.title %></h3>
+	  <button class="ai-assist" onclick="openAIAssistant('<%= index %>')">
+		<i class="fas fa-robot"></i> AI Assist
+	</button>
+    </div>
+    <p class="step-content"><%= instruction.description %></p>
+
+    <!-- AI Assistant Section -->
+    <div class="ai-assistant-expansion">
+      <div class="ai-divider"></div>
+      <div class="ai-response">
+        <div class="ai-header">
+          <div class="ai-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h4>AI Assistant</h4>
+        </div>
+        <p id="ai-text-<%= index %>">Click 'AI Assist' for guidance.</p>
+        <span class="typing-cursor"></span>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+
+
+
+				<%if(!shared){%>
+				<div class="sticky-share" onclick="shareProject()">
+					<div class="icon">&#8599;</div>
+					<span>Share to unlock badges</span>
+				</div>
+				<%}%>
+			</div>
+		</section>
+
+		<%-include('partials/footer')%>
+
+		<script src="/js/generate-project.js"></script>
+		<script>
+			window.onscroll = function () { myFunction() };
+			var navbar_sticky = document.getElementById("navbar_sticky");
+			var sticky = navbar_sticky.offsetTop;
+			var navbar_height = document.querySelector('.navbar').offsetHeight;
+			function myFunction() {
+				if (window.pageYOffset >= sticky + navbar_height) {
+					navbar_sticky.classList.add("sticky")
+					document.body.style.paddingTop = navbar_height + 'px';
+				} else {
+					navbar_sticky.classList.remove("sticky");
+					document.body.style.paddingTop = '0'
+				}
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+				let slideIndex = 1;
+				showSlides(slideIndex);
+
+				function plusSlides(n) {
+					showSlides(slideIndex += n);
+				}
+
+				function currentSlide(n) {
+					showSlides(slideIndex = n);
+				}
+
+				function showSlides(n) {
+					const slides = document.getElementsByClassName("mySlides");
+					const thumbs = document.getElementsByClassName("thumbnail");
+
+					if (n > slides.length) slideIndex = 1;
+					if (n < 1) slideIndex = slides.length;
+
+					for (let i = 0; i < slides.length; i++) {
+						slides[i].style.display = "none";
+					}
+
+					for (let i = 0; i < thumbs.length; i++) {
+						thumbs[i].classList.remove("active-thumb");
+					}
+
+					slides[slideIndex - 1].style.display = "block";
+					thumbs[slideIndex - 1].classList.add("active-thumb");
+				}
+
+				// Make functions available globally for onclick attributes
+				window.plusSlides = plusSlides;
+				window.currentSlide = currentSlide;
+			});
+
+
+			document.addEventListener("DOMContentLoaded", function () {
+				document.getElementById("generate-btn").addEventListener("click", function (e) {
+					e.preventDefault();
+					generateProject();
+				});
+			});
+
+		</script>
+
+</body>
+
+
+</html>

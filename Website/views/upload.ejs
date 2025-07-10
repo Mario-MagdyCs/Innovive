@@ -1,0 +1,264 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="css/bootstrap.min.css" rel="stylesheet" >
+	<link href="css/font-awesome.min.css" rel="stylesheet" >
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-/+U23...your_hash_here..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="css/upload.css" rel="stylesheet">
+  <script src="/js/bootstrap.bundle.min.js"></script>
+ 
+    <title>
+        Upload Page
+    </title>
+</head>
+<body>
+       <%- include('partials/header')%>
+      
+        <div class="wrapper">
+         
+          <div class="settings-panel" id="settingsPanel">
+            <div class="settings-close" onclick="toggleSettings()">
+              <i class="fas fa-times"></i>
+            </div>
+          
+            <h3><i class="fa fa-cog"></i> Settings</h3>
+          
+            <div class="setting-group">
+              <label for="numberOfImages">Number of Images</label>
+              <div class="number-buttons">
+                <button type="button" class="number-btn active" data-value="1">1</button>
+                <button type="button" class="number-btn" data-value="2">2</button>
+                <button type="button" class="number-btn" data-value="3">3</button>
+              </div>
+              <input type="hidden" name="numberOfImages" id="numberOfImages" value="1">
+            </div>
+          
+            <div class="setting-group">
+              <label for="similarity">Similarity</label>
+              <div class="similarity-buttons">
+                <button type="button" class="similarity-btn active" data-value="25">Low</button>
+                <button type="button" class="similarity-btn" data-value="50">Medium</button>
+                <button type="button" class="similarity-btn" data-value="75">High</button>
+              </div>
+              <input type="hidden" name="similarity" id="similarity" value="25">
+            </div>
+          </div>
+          
+          <div class="dark-container">
+        
+            <div class="main-area">
+  
+              <div class="intro-section">
+                <h1 class="gradient-text">✨ AI Project Creator ✨</h1>
+                <p>Upload your material images and let our AI generate unique DIY project ideas — turning waste into wonders!</p>
+              </div>
+
+              <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload/generate">
+              <div class="upload-action-wrapper">
+                
+                  <div class="upload-action-row" id="uploadActionRow">
+                    <div class="upload-bar" style="flex-grow: 1;">
+                      <div class="image-previews" id="imagePreviews"></div>
+                
+                      <label for="fileInput" class="upload-full-label">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Images</span>
+                      </label>
+                      <input type="file" id="fileInput" name="images" multiple hidden />
+                    </div>
+                
+                    <div class="action-bar">
+                      <div class="settings-icon" onclick="toggleSettings()">
+                        <i class="fas fa-cog"></i>
+                      </div>
+                   
+                      <button class="generate-modern-btn-active" type="submit">
+                        <i class="fas fa-wand-magic-sparkles"></i> Generate
+                      </button>
+                    </div>
+                  </div>
+                
+                
+                <!-- Hidden initially, shown after uploading -->
+                <div class="upload-bar-active hidden" id="uploadBarActive">
+                  <div class="image-previews" id="imagePreviews"></div>
+              
+                  <div class="action-bar">
+                    <div class="settings-icon" onclick="toggleSettings()">
+                      <i class="fas fa-cog"></i>
+                    </div>
+                    
+         
+                    <button class="generate-modern-btn-active" type="submit">
+                      <i class="fas fa-wand-magic-sparkles"></i> Generate
+                    </button>
+       
+                  </div>
+                </div>
+              
+              </div>
+              </form>
+              <p id="currUser" style="display: none;"><%=currentUser%></p>
+              
+               
+              <div class="generated-projects-section">
+                <% if(currentUser){%>
+                <div class="new-projects-grid" id="newProjectsGrid">
+                  <!-- New images will be inserted here dynamically -->
+                </div>
+                <% } %>
+                <% if(currentUser && userProjects.length>0){%>
+                  <h4 class="section-title">Previously Generated Projects</h4>
+                <% } %>
+
+                <% if(currentUser && userProjects.length>0) {%>
+                <div class="example-gallery" id="exampleGallery">
+                  <% userProjects.forEach(project => { %>
+                    <div class="project-card">
+                      <img src="<%= project.image %>" class="project-image" alt="<%= project.name %>" />
+                        
+                      <div class="icon-buttons">
+                        <% if (!project.shared) { %>
+                          <button class="icon-btn" title="Share Project" onclick="shareProject('<%= project._id %>', this)">
+                            <i class="fas fa-share-alt"></i>
+                          </button>
+                        <% } else { %>
+                          <div class="icon-btn shared-indicator" title="Already Shared">
+                            <i class="fas fa-check"></i>
+                          </div>
+                        <% } %>
+                        <button class="icon-btn" title="Share + Handmade" onclick="openHandmadeModal('<%= project._id %>')">
+                          <i class="fas fa-hand-holding-heart"></i>
+                        </button>
+                      
+                       
+                      </div>
+                      
+                      
+              
+                      <div class="overlay">
+                        <button class="show-info-btn" onclick="window.location.href='/projects/<%=project._id%>'">Show Info</button>
+                      </div>
+              
+                      <div class="project-name"><%= project.name %></div>
+                    </div>
+                  <% }) %>
+                </div>
+                <div class="view-more-container">
+                  <button class="view-more-btn" onclick="window.location.href='/recycled_history'">
+                      <span class="view-more-text">View More</span> 
+                      <i class="fas fa-external-link-alt view-more-icon"></i>
+                  </button>
+                </div>
+                <% } %>
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+   
+
+      <div id="toastGreen" class="toastGreen"></div>
+      <div id="toastRed" class="toastRed"></div>
+
+      <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content share-modal">
+          <button class="close-btn" onclick="closeConfirmModal()">&times;</button>
+          <h2>Confirm Share</h2>
+          <p>Are you sure you want to share this project? You’ll earn <strong>2 points</strong>.</p>
+          <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeConfirmModal()">Cancel</button>
+            <button id="confirmShareBtn">Yes, Share</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Upload Handmade Image Modal -->
+      <div id="handmadeModal" class="modal" style="display: none;">
+        <div class="modal-content share-modal">
+          <button class="close-btn" onclick="closeHandmadeModal()">&times;</button>
+          <h2 style="color: #2e7d32;">Upload Handmade Image</h2>
+          <p>Select an image of your handmade project to share. If accepted by admin, you will earn <strong>5 points</strong>.</p>
+          
+          <form id="handmadeForm" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <label class="file-upload-btn">
+              <input type="file" name="handmadeImage" accept="image/*" required style="display: none;" onchange="showSelectedImage(this)" />
+              <span id="selectedFileName">Choose File</span>
+            </label>
+            
+            <!-- Image Path Display -->
+            <p id="imagePath" style="font-size: 14px; color: #666;"></p>
+      
+            <!-- Image Preview Display -->
+            <div id="imagePreview" style="display: none; margin-top: 15px; position: relative;">
+              <img src="" alt="Handmade Preview" id="previewImage" style="max-width: 200px; max-height: 200px; border: 2px solid #ddd; border-radius: 8px;">
+              <button type="button" class="remove-image-btn" onclick="removeSelectedImage()">&times;</button>
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="cancel-btn" onclick="closeHandmadeModal()">Cancel</button>
+              <button type="submit" id="uploadHandmadeBtn" class="upload-btn">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+        <%- include('partials/footer')%>
+
+          
+
+<script>
+  // Number of Images buttons
+const numberButtons = document.querySelectorAll('.number-btn');
+const numberOfImagesInput = document.getElementById('numberOfImages');
+
+numberButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    numberButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    numberOfImagesInput.value = btn.getAttribute('data-value');
+  });
+});
+
+// Similarity buttons
+const similarityButtons = document.querySelectorAll('.similarity-btn');
+const similarityInput = document.getElementById('similarity');
+
+similarityButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    similarityButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    similarityInput.value = btn.getAttribute('data-value');
+  });
+});
+
+
+</script>
+        
+          
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity=
+  "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous">
+</script>
+<script src="./js/upload.js"></script>
+
+
+
+
+ 
+
+  
+
+ 
+</body>
+</html>

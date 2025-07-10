@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 5 - Automation Level</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 5 of 7
+    </div>
+    <div class="progress-bar" style="width: 69%;">
+        <div class="progress" ></div>
+    </div>
+    <div class="container">
+        <h2>What Level of Automation Is Used At Your Facility?</h2>
+        <p class="subtext">Select the option that best describes your production process.</p>
+        <form id="automation-form">
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="automation" value="Fully Automated" required>
+                    Fully Automated
+                </label>
+                <label>
+                    <input type="radio" name="automation" value="Partially Manual">
+                    Partially Manual
+                </label>
+                <label>
+                    <input type="radio" name="automation" value="Handmade">
+                    Handmade
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/register-industrial/step4";
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

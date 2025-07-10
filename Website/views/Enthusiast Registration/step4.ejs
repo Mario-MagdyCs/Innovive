@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 4 - Upcycling Projects</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 4 of 5
+    </div>
+    <div class="progress-bar" style="width: 80%;">
+        <div class="progress"></div>
+    </div>
+    <div class="container">
+        <h2>What Type of Projects Interest You?</h2>
+        <p class="subtext">Select the kinds of upcycling projects you'd like to try.</p>
+        <form id="projects-form">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="projects" value="Home Decor">
+                    Home Decor
+                </label>
+                <label>
+                    <input type="checkbox" name="projects" value="Fashion Accessories">
+                    Fashion Accessories
+                </label>
+                <label>
+                    <input type="checkbox" name="projects" value="Gardening">
+                    Gardening (Planters, Composting)
+                </label>
+                <label>
+                    <input type="checkbox" name="projects" value="Storage & Organization">
+                    Storage & Organization
+                </label>
+                <label>
+                    <input type="checkbox" name="projects" value="Art & Craft">
+                    Art & Craft
+                </label>
+                <label>
+                    Other: <input type="text" name="projects_other">
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/auth/register/enthusiast-step3";
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

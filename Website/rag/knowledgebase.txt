@@ -1,0 +1,20 @@
+Innovive is an AI-powered sustainability platform that transforms waste into value through intelligent upcycling solutions. It serves two main user types: DIY enthusiasts and industrial designers.
+
+Core Features of Innovive:
+
+1. Material Classifier:
+Users can upload an image of any recyclable material, and Innovive’s deep learning model (based on EfficientNet) will classify it into one of 16 categories such as aluminum soda cans, cardboard, paper, plastic containers etc. This classifier supports both individual and mixed-material inputs and returns the most likely materials present.
+
+2. DIY Project Generator:
+Users can upload an image of a recyclable material (like a plastic bottle, glass jar, or fabric) or type its name. Innovive will classify the material and then generate a creative, step-by-step upcycling project idea based on it. Each project includes a title, difficulty level, required materials, and clear instructions.
+
+3. AI Product Designer (for Industrial Users):
+Industrial designers can input waste materials wood, glass, metal etc. Innovive uses generative AI to produce a photorealistic image of the product along with an optional textual breakdown of its part measurements and additional materials for manufacturing.
+
+4. Projects Filter:
+Users can explore a rich database of previously generated DIY projects through a smart filter system. Filters include material type, difficulty level, project category (e.g., decor, furniture), and generation method (manual or AI). This helps users find relevant crafts quickly.
+
+5. Reward System:
+Individuals can upload their projects for others to view and gain points to motivate them.
+
+Overall, Innovive is a practical AI assistant for sustainable crafting and design. It blends creativity with recyclability to encourage environmental impact at both personal and industrial levels.

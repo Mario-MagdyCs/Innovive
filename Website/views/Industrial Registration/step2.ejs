@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Registration - Step 2</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 2 of 7
+    </div>
+    <div class="progress-bar" style="width: 26%;">
+        <div class="progress" ></div>
+    </div>
+    <div class="container">
+        <h2>Industrial User Registration</h2>
+        <p class="subtext">Tell us about your company to tailor designs to your needs.</p>
+        <form id="industrial-form" action="/register-industrial/step2" method="POST">
+            <div class="form-group">
+                <label for="company_name">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Business Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country/Region</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/auth/register";
+        }
+
+    </script>
+</body>
+</html>

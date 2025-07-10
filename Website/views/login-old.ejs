@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/login-green.css">
+</head>
+<style>
+    /* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6f4e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.login-container {
+  position: relative;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow:
+    0 4px 12px rgba(102, 187, 106, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: 90%;
+  max-width: 670px;
+  overflow: hidden; /* Needed to keep ::before rounded */
+}
+.login-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to bottom, #66bb6a, #388e3c);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+
+
+/* Headings */
+.login-header {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+.login-subtext {
+  font-size: 16px;
+  color: #4b7054;
+  margin-bottom: 25px;
+}
+
+/* Form */
+.login-form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form-group label {
+  font-weight: 600;
+  color: #2e7d32;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #a5d6a7;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f6fff6;
+  transition: border 0.3s;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #66bb6a;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #43a047;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background-color: #388e3c;
+}
+
+/* Link */
+.login-register {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #4b7054;
+}
+
+.login-register a {
+  color: #43a047;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-register a:hover {
+  text-decoration: underline;
+  color: #2e7d32;
+}
+
+</style>
+<body>
+  <div class="login-container">
+    <h2 class="login-header">Welcome to Innovive!</h2>
+    <p class="login-subtext">Your next upcycling masterpiece starts here — log in to make an impact</p>
+
+    <form id="login-form" action="/auth/login" method="POST">
+      <div class="login-form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" class="login-input" required>
+      </div>
+      <div class="login-form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="login-input" required>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <p class="login-register">Not registered? <a href="register">Sign up here</a></p>
+      <p style="margin-top: 10px; text-align: left;" class="login-register"> <a href="/">Back To Home</a></p>
+    </form>
+  </div>
+</body>
+</html>

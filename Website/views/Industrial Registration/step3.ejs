@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3 - Industry Selection</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 3 of 7
+    </div>
+    <div class="progress-bar" style="width: 40%;">
+        <div class="progress"></div>
+    </div>
+    <div class="container">
+        <h2>Select Your Industry</h2>
+        <p class="subtext">Select all categories that match your company's products.</p>
+        <form id="industry-form">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="industry" value="Furniture Manufacturing">
+                    Furniture Manufacturing
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Home Storage Solutions">
+                    Home Storage Solutions
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Office & Workspace Furniture">
+                    Office & Workspace Furniture
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Kitchenware & Organizers">
+                    Kitchenware & Organizers
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Lighting & Fixtures">
+                    Lighting & Fixtures
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Mattresses & Upholstery">
+                    Mattresses & Upholstery
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Sustainable Furniture Solutions">
+                    Sustainable Furniture Solutions
+                </label>
+                <label>
+                    <input type="checkbox" name="industry" value="Other">
+                    Other: <input type="text" name="industry_other">
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/register-industrial/step2";
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

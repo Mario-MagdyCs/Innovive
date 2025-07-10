@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #181a1e;
+      color: #f0f0f0;
+    }
+
+    /* Container Layout */
+    .container {
+      display: flex;
+    }
+
+      /* Sidebar Style */
+      .sidebar {
+  background-color: #25272e;
+  width: 60px;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 140%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Increased gap between icons */
+}
+
+    .nav-links li {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: #b2b2b2;
+      transition: color 0.3s;
+    }
+
+    /* Default Icon Color */
+    .nav-links li i {
+      color: #b2b2b2;
+    }
+
+    /* Active Link Color */
+    .nav-links li.active i {
+      color: #27ae60;
+    }
+
+    /* Hover Effect */
+    .nav-links li:hover i {
+      color: #27ae60;
+    }
+
+
+
+    /* Main Content */
+    .main-content {
+      margin-left: 80px;
+      padding: 20px;
+      width: calc(100% - 80px);
+      background-color: #2b2d35;
+      min-height: 100vh;
+      overflow: auto;
+    }
+
+    .main-content h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .search-bar input {
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: #3a3b42;
+      color: #f0f0f0;
+      border: none;
+      outline: none;
+      width: 250px;
+    }
+
+    /* User Table */
+    .table-container {
+      overflow-y: auto;
+      /* max-height: 350px; */
+      border-radius: 10px;
+      background-color: #2b2d35;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .user-table th, 
+    .user-table td {
+      padding: 12px 15px;
+      text-align: left;
+      color: #f0f0f0;
+      border-bottom: 1px solid #3a3b42;
+    }
+
+    .user-table th {
+      background-color: #3a3b42;
+      font-weight: bold;
+      color: #b2b2b2;
+      position: sticky;
+      top: 0;
+    }
+
+    /* Stylish Checkboxes */
+    .user-table input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #3a3b42;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #555;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      outline: none;
+      transition: background 0.3s;
+    }
+
+    /* Checked State */
+    .user-table input[type="checkbox"]:checked {
+      background-color: #27ae60;
+      border-color: #27ae60;
+    }
+
+    .user-table input[type="checkbox"]:checked::after {
+      content: "✔";
+      color: #fff;
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Button Styles */
+    .edit-btn, .delete-btn {
+      background: none;
+      border: none;
+      color: #f0f0f0;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .edit-btn:hover {
+      color: #2ecc71;
+    }
+
+    .delete-btn:hover {
+      color: #e74c3c;
+    }
+
+
+
+
+
+    .custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .custom-modal {
+    background: #2b2d35;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .custom-modal h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #f0f0f0;
+  }
+
+  .custom-modal p {
+    margin: 10px 0 20px;
+    color: #b2b2b2;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 27px;
+    margin-left: 16%;
+  }
+
+  .confirm-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .confirm-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .cancel-btn {
+    background-color: #3a3b42;
+    color: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .cancel-btn:hover {
+    background-color: #555;
+  }
+
+
+
+  .edit-user-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.edit-user-modal-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.edit-user-modal {
+  background: #2b2d35;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.edit-user-modal-overlay.show .edit-user-modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.edit-user-modal h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #f0f0f0;
+}
+
+.edit-user-modal label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #b2b2b2;
+}
+
+.edit-user-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  background: #3a3b42;
+  color: #f0f0f0;
+  transition: border 0.3s;
+}
+
+.edit-user-input:focus {
+  border: 1px solid #27ae60;
+  outline: none;
+}
+
+.edit-user-modal-actions {
+    display: flex;
+    gap: 11px;
+    margin-top: 21px;
+    margin-left: 59%;
+}
+
+.edit-user-confirm-btn {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edit-user-confirm-btn:hover {
+  background-color: #219150;
+}
+
+.edit-user-cancel-btn {
+  background-color: #3a3b42;
+  color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edit-user-cancel-btn:hover {
+  background-color: #555;
+}
+.edit-user-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Show Modal when .show class is added */
+.edit-user-modal-overlay.show {
+  display: flex;
+}
+
+.edit-user-modal {
+  background: #2b2d35;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.edit-user-modal h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #f0f0f0;
+}
+  /* Make table headers look clickable */
+  .user-table th {
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  /* Add hover effect to make it obvious */
+  .user-table th:hover {
+    background-color: #3a3b42;
+    color: #f0f0f0;
+  }
+    
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Sidebar (Consistent) -->
+  <div class="sidebar">
+    <ul class="nav-links">
+      <li><a href="/admin"><i class="fas fa-home"></i></a></li>
+      <li class="active"><a href="/adminUser"><i class="fas fa-user"></i></a></li>
+      <li><a href="/admin-pending"><i class="fas fa-clock"></i></a></li>
+      <li><a href="products.html"><i class="fas fa-shopping-cart"></i></a></li>
+      <li><a href="orders.html"><i class="fas fa-bag-shopping"></i></a></li>
+      <li><a href="reports.html"><i class="fas fa-chart-line"></i></a></li>
+      <li><a href="messages.html"><i class="fas fa-comment-dots"></i></a></li>
+      <li><a href="settings.html"><i class="fas fa-gear"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content (Users Management) -->
+  <div class="main-content">
+    <h2>Users Management</h2>
+    <div class="search-bar">
+        <input type="text" placeholder="Search by name..." id="searchInput" oninput="filterUsers()">
+      </div>
+    
+    <div class="table-container">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes(this)"></th>
+            <th onclick="sortTable('fullName')">Full Name ▲</th>
+            <th>Email</th>
+            <th onclick="sortTable('age')">Age ▲</th>
+            <th>Gender</th>
+            <th onclick="sortTable('points')">Points ▲</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="custom-modal-overlay" id="customModal" style="display: none;">
+  <div class="custom-modal">
+    <h2>Are you sure?</h2>
+    <p>This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="confirm-btn" onclick="confirmDelete()">Yes, delete</button>
+      <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Edit User Modal -->
+<div class="edit-user-modal-overlay" id="editUserModal">
+  <div class="edit-user-modal">
+    <h2>Edit User</h2>
+    <div class="edit-user-modal-body">
+      <label>Full Name</label>
+      <input type="text" id="editUserFullName" class="edit-user-input">
+
+      <label>Email</label>
+      <input type="email" id="editUserEmail" class="edit-user-input">
+
+      <label>Age</label>
+      <input type="number" id="editUserAge" class="edit-user-input">
+
+      <label>Gender</label>
+      <select id="editUserGender" class="edit-user-input">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Points</label>
+      <input type="number" id="editUserPoints" class="edit-user-input">
+    </div>
+
+    <div class="edit-user-modal-actions">
+      <button class="edit-user-confirm-btn" onclick="saveUserChanges()">Save Changes</button>
+      <button class="edit-user-cancel-btn" onclick="closeEditModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+<!-- JavaScript at the end for proper loading -->
+<script>
+ let users = []; // Global user list
+  let sortOrder = { fullName: 1, age: 1, points: 1 }; // 1 = ascending, -1 = descending
+
+  // Function to fetch users from the database
+  async function fetchUsers() {
+    try {
+      const response = await fetch('/adminUser/data');
+      if (!response.ok) throw new Error("Failed to fetch users");
+
+      users = await response.json(); // Store users in global variable
+      displayUsers(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  }
+
+  // Function to sort users by column
+  function sortTable(column) {
+    sortOrder[column] *= -1; // Toggle sort order (1 to -1 or -1 to 1)
+    
+    users.sort((a, b) => {
+      let valA = a[column] || '';
+      let valB = b[column] || '';
+
+      // Convert values for proper sorting
+      if (column === 'age' || column === 'points') {
+        valA = parseInt(valA) || 0;
+        valB = parseInt(valB) || 0;
+      } else {
+        valA = valA.toString().toLowerCase();
+        valB = valB.toString().toLowerCase();
+      }
+
+      if (valA < valB) return -1 * sortOrder[column];
+      if (valA > valB) return 1 * sortOrder[column];
+      return 0;
+    });
+
+    // Display sorted users
+    displayUsers(users);
+
+    // Update sort arrow
+    updateSortArrows(column);
+  }
+
+  // Function to update sort arrows in the table header
+  function updateSortArrows(column) {
+    const headers = document.querySelectorAll('.user-table th');
+    headers.forEach(header => {
+      if (header.innerText.includes('▲') || header.innerText.includes('▼')) {
+        header.innerText = header.innerText.replace('▲', '').replace('▼', '');
+      }
+    });
+
+    const sortArrow = sortOrder[column] === 1 ? '▲' : '▼';
+    const targetHeader = document.querySelector(`th[onclick="sortTable('${column}')"]`);
+    if (targetHeader) targetHeader.innerText += ` ${sortArrow}`;
+  }
+
+  // Function to display all users in the table
+  function displayUsers(userList = []) {
+    const tbody = document.getElementById("userTableBody");
+    if (!tbody) {
+      console.error("User table body not found!");
+      return;
+    }
+
+    tbody.innerHTML = ""; // Clear existing rows
+
+    userList.forEach(user => {
+      const row = `
+        <tr>
+          <td><input type="checkbox" class="user-checkbox"></td>
+          <td>${user.fullName || 'N/A'}</td>
+          <td>${user.email}</td>
+          <td>${user.age || 'N/A'}</td>
+          <td>${user.gender || 'N/A'}</td>
+          <td>${user.points || 0}</td>
+          <td>
+            <button class="edit-btn" onclick="editUser('${user._id}')"><i class="fas fa-pencil-alt"></i></button>
+            <button class="delete-btn" onclick="deleteUser('${user._id}')"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      `;
+      tbody.insertAdjacentHTML("beforeend", row);
+    });
+  }
+
+  // Load users on page load
+  document.addEventListener("DOMContentLoaded", fetchUsers);
+
+// Function to filter users by name or email
+function filterUsers() {
+  const searchValue = document.getElementById("searchInput").value.toLowerCase();
+  const filteredUsers = users.filter(user =>
+    (user.fullName && user.fullName.toLowerCase().includes(searchValue)) ||
+    (user.email && user.email.toLowerCase().includes(searchValue))
+  );
+  displayUsers(filteredUsers);
+}
+
+// Function to toggle all checkboxes
+function toggleAllCheckboxes(source) {
+  const checkboxes = document.querySelectorAll(".user-checkbox");
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = source.checked;
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to edit a user (To be implemented)
+let userIdToEdit = null; // Store user ID to edit
+
+function editUser(userId) {
+    userIdToEdit = userId;
+    const user = users.find(u => u._id === userId);
+    if (!user) return;
+
+    // Populate the modal fields with the user data
+    document.getElementById("editUserFullName").value = user.fullName || '';
+    document.getElementById("editUserEmail").value = user.email;
+    document.getElementById("editUserEmail").readOnly = false; // Allow editing
+    document.getElementById("editUserAge").value = user.age || '';
+    document.getElementById("editUserGender").value = user.gender || 'Male';
+    document.getElementById("editUserPoints").value = user.points || 0;
+
+    // Show the modal with the .show class
+    document.getElementById("editUserModal").classList.add("show");
+  }
+
+  // Function to close the edit user modal
+  function closeEditModal() {
+    document.getElementById("editUserModal").classList.remove("show");
+    userIdToEdit = null;
+  }
+// Function to save the user changes
+async function saveUserChanges() {
+  if (!userIdToEdit) return;
+
+  // Collect the updated values
+  const updatedUser = {
+    fullName: document.getElementById("editUserFullName").value,
+    age: document.getElementById("editUserAge").value,
+    gender: document.getElementById("editUserGender").value,
+    points: document.getElementById("editUserPoints").value
+  };
+
+  try {
+    const response = await fetch(`/adminUser/edit/${userIdToEdit}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedUser)
+    });
+
+    if (!response.ok) throw new Error("Failed to update user");
+
+    // Refresh the user list after saving
+    fetchUsers();
+    closeEditModal();
+  } catch (error) {
+    console.error("Error updating user:", error);
+    alert("Error updating user. Please try again.");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to delete a user (To be implemented)
+let userIdToDelete = null; // Store user ID to delete
+
+// Function to open the custom modal
+function deleteUser(userId) {
+  userIdToDelete = userId;
+  document.getElementById("customModal").style.display = "flex";
+}
+
+// Function to close the custom modal
+function closeModal() {
+  document.getElementById("customModal").style.display = "none";
+  userIdToDelete = null;
+}
+
+// Function to confirm delete (called from modal)
+async function confirmDelete() {
+  if (!userIdToDelete) return;
+
+  try {
+    const response = await fetch(`/adminUser/delete/${userIdToDelete}`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) throw new Error("Failed to delete user");
+
+    // Refresh the user list after deletion
+    fetchUsers();
+    closeModal();
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    closeModal();
+    alert("Error deleting user. Please try again.");
+  }
+}
+
+// Load users on page load
+document.addEventListener("DOMContentLoaded", fetchUsers);
+  </script>
+  </body>
+  
+</html>

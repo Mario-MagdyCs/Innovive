@@ -1,0 +1,256 @@
+{
+  "styrofoam_food_containers": {
+    "projects": [
+      "seedling starter tray",
+      "wall-mounted jewelry holder",
+      "drawer organizer tray",
+      "paint palette",
+      "floating toy boat"
+    ],
+    "visual_features": [
+      "matte white surface",
+      "lightweight and spongy",
+      "rectangular compartments",
+      "insulated foam texture",
+      "fragile structure"
+    ]
+  },
+  "plastic_straws": {
+    "projects": [
+      "decorative photo frame",
+      "hanging mobile",
+      "coiled basket",
+      "bracelet",
+      "sculptural lamp shade"
+    ],
+    "visual_features": [
+      "hollow cylindrical tubes",
+      "glossy finish",
+      "often multicolored",
+      "flexible and bendable",
+      "slim and stackable"
+    ]
+  },
+  "plastic_food_container": {
+    "projects": [
+      "modular wall planters",
+      "craft supply box",
+      "transparent drawer system",
+      "snack storage bin",
+      "bathroom organizer"
+    ],
+    "visual_features": [
+      "clear or translucent plastic",
+      "snap-on lids",
+      "stackable form",
+      "rectangular or square shape",
+      "rigid body"
+    ]
+  },
+  "plastic_detergent_bottle": {
+    "projects": [
+      "watering can",
+      "bird feeder",
+      "tool caddy",
+      "bookend",
+      "garden scoop"
+    ],
+    "visual_features": [
+      "curved handle",
+      "opaque colored plastic",
+      "large spout",
+      "rigid and tall body",
+      "often has label marks"
+    ]
+  },
+  "plastic_cutlery": {
+    "projects": [
+      "wind chimes",
+      "garden label stakes",
+      "tabletop sculpture",
+      "picture frame decoration",
+      "earring holder"
+    ],
+    "visual_features": [
+      "shiny plastic texture",
+      "forks and spoons with thin handles",
+      "rigid and breakable",
+      "lightweight",
+      "varied utensil shapes"
+    ]
+  },
+  "plastic_cup": {
+    "projects": [
+      "mini planter",
+      "paint mixing cup",
+      "led tea light holder",
+      "makeup brush holder",
+      "craft supply jar"
+    ],
+    "visual_features": [
+      "transparent or colored plastic",
+      "tapered cylindrical shape",
+      "lightweight and stackable",
+      "smooth surface",
+      "often disposable"
+    ]
+  },
+  "plastic_bottle": {
+    "projects": [
+      "vertical garden",
+      "hanging bird feeder",
+      "desk organizer",
+      "greenhouse container",
+      "piggy bank"
+    ],
+    "visual_features": [
+      "transparent body with label area",
+      "threaded neck",
+      "often has ribbed surface",
+      "flexible body",
+      "curved shape"
+    ]
+  },
+  "plastic_bag": {
+    "projects": [
+      "braided basket",
+      "woven mat",
+      "stuffed pet toy",
+      "crocheted tote bag",
+      "gift wrap alternative"
+    ],
+    "visual_features": [
+      "crinkly and thin texture",
+      "semi-transparent or colored",
+      "flexible and stretchable",
+      "easily foldable",
+      "noisy surface"
+    ]
+  },
+  "plain_cup": {
+    "projects": [
+      "candle holder",
+      "desk pen stand",
+      "snack serving dish",
+      "paintbrush stand",
+      "craft base structure"
+    ],
+    "visual_features": [
+      "neutral color",
+      "solid surface",
+      "uniform round shape",
+      "stable base",
+      "disposable or reusable"
+    ]
+  },
+  "paper": {
+    "projects": [
+      "origami flowers",
+      "paper bead jewelry",
+      "gift wrapping sheets",
+      "notebook cover",
+      "collage artwork"
+    ],
+    "visual_features": [
+      "foldable and flexible",
+      "flat surface",
+      "usually white or printed",
+      "lightweight",
+      "tearable edges"
+    ]
+  },
+  "glass_jar": {
+    "projects": [
+      "mini terrarium",
+      "spice container",
+      "decorative lantern",
+      "coin holder",
+      "candle jar"
+    ],
+    "visual_features": [
+      "transparent with screw lid",
+      "smooth cylindrical shape",
+      "reflective surface",
+      "rigid glass structure",
+      "shiny finish"
+    ]
+  },
+  "glass_bottle": {
+    "projects": [
+      "flower vase",
+      "hanging light fixture",
+      "decorative lantern",
+      "oil dispenser",
+      "table centerpiece"
+    ],
+    "visual_features": [
+      "tall and narrow",
+      "smooth glass texture",
+      "colored or transparent",
+      "cork or screw top",
+      "recyclable material"
+    ]
+  },
+  "fabric": {
+    "projects": [
+      "patchwork pillow",
+      "tote bag",
+      "stuffed animals",
+      "pouch",
+      "fabric banner"
+    ],
+    "visual_features": [
+      "soft and flexible",
+      "patterned or plain",
+      "tearable and sewable",
+      "foldable layers",
+      "varied textures"
+    ]
+  },
+  "cardboard": {
+    "projects": [
+      "storage drawer",
+      "cat house",
+      "toy house",
+      "project display board",
+      "desk organizer"
+    ],
+    "visual_features": [
+      "brown layered texture",
+      "rigid but cuttable",
+      "matte finish",
+      "flat sheets or folded boxes",
+      "recyclable"
+    ]
+  },
+  "aluminum_soda_can": {
+    "projects": [
+      "candle holder",
+      "mini stove",
+      "pencil case",
+      "decorative sculpture"
+    ],
+    "visual_features": [
+      "metallic shine",
+      "cylindrical shape",
+      "pull tab on top",
+      "thin aluminum walls",
+      "lightweight"
+    ]
+  },
+  "aluminum_food_can": {
+    "projects": [
+      "lantern with cutouts",
+      "paintbrush stand",
+      "utensil organizer",
+      "flower pot"
+    ],
+    "visual_features": [
+      "smooth metal surface",
+      "ribbed exterior",
+      "sharp cut edges",
+      "rigid and reusable",
+      "shiny reflective finish"
+    ]
+  }
+}

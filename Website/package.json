@@ -1,0 +1,35 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "dev": "npx nodemon ./bin/www",
+    "start-apis": "concurrently \"start cmd /c python ./APIs/classification.py\" \"start cmd /c python ./APIs/project_gpt_api.py\" \"start cmd /c python ./APIs/stable_v2s.py\" \"start cmd /c python ./APIs/text_to_image_api.py\" \"start cmd /c python ./APIs/preserving_api.py\" \"start cmd /c python ./APIs/product_gpt_api..py\" \"start cmd /c python ./APIs/product_generator_api.py\""
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "flatpickr": "^4.6.13",
+    "http": "^0.0.1-security",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.3.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7",
+    "replicate": "^1.0.1",
+    "tmp": "^0.2.3",
+    "update": "^0.7.4"
+  }
+}

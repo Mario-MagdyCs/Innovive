@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Complete</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 5 of 5
+    </div>
+    <div class="progress-bar" style="width: 100%;">
+        <div class="progress" ></div>
+    </div>
+    <div class="container">
+        <h2>Registration Complete!</h2>
+        <p class="subtext">You have successfully completed all steps.</p>
+        <img src="/images/items/green-tick.jpg" alt="Success" class="success-img" style="width:60%;">
+        <div class="button-group">
+            <button onclick="goToHomepage()" class="submit-btn">Back to Homepage</button>
+        </div>
+    </div>
+    <script>
+        function goToHomepage() {
+            window.location.href = "/";
+        }
+    </script>
+    <style>
+        .success-img {
+            width: 120px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</body>
+</html>

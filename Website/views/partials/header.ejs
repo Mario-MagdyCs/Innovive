@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+</head>
+
+<body>
+    <section id="header">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow_box" id="navbar_sticky">
+            <div class="container-xl">
+                <a class="text-black p-0 navbar-brand fw-bold me-0" href="index">
+                    <i class="fa fa-recycle me-1 col_green align-middle ReIcon"></i> Innovive
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-0 nav_left ms-auto">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="/about">About</a></li> -->
+                        <!-- <li class="nav-item"><a class="nav-link" href="/Service">Services</a></li> -->
+                        <li class="nav-item"><a class="nav-link" href="/projects">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/chatbot">Chatbot</a></li>
+
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-0 nav_left ms-auto">
+                        <% if (!currentUser) { %>
+                            <li class="nav-item"><a class="nav-link" href="/auth/login">Sign In</a></li>
+                        <% } else { %>
+                            <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/profile_info">My Profile</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+</body>
+
+</html>

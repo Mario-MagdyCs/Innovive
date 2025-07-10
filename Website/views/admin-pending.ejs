@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Posts - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-pending.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+<body>
+
+  <div class="container">
+    <!-- Sidebar (Consistent) -->
+    <div class="sidebar">
+      <ul class="nav-links">
+        <li><a href="/admin"><i class="fas fa-home"></i></a></li>
+        <li><a href="/adminUser"><i class="fas fa-user"></i></a></li>
+        <li class="active"><a href="/admin-pending"><i class="fas fa-clock"></i></a></li>
+        <li><a href="products.html"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href="orders.html"><i class="fas fa-bag-shopping"></i></a></li>
+        <li><a href="reports.html"><i class="fas fa-chart-line"></i></a></li>
+        <li><a href="messages.html"><i class="fas fa-comment-dots"></i></a></li>
+        <li><a href="settings.html"><i class="fas fa-gear"></i></a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content (Pending Posts) -->
+    <div class="main-content">
+      <h2>Pending Posts</h2>
+      <div class="pending-posts" id="pendingPostsContainer">
+        <!-- Dynamic posts will be loaded here by JavaScript -->
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- JavaScript for Accept/Reject Actions -->
+  <script>
+  async function fetchPendingPosts() {
+    try {
+      const response = await fetch('/admin-pending/data');
+      const data = await response.json();
+      displayPendingPosts(data.projects);
+    } catch (err) {
+      console.error("Failed to fetch pending posts:", err);
+    }
+  }
+
+  function displayPendingPosts(pendingPosts) {
+  const container = document.getElementById("pendingPostsContainer");
+  container.innerHTML = "";
+
+  pendingPosts.forEach((post, index) => {
+    console.log("Post Uploads:", post.uploads); // Debug line
+
+    const postCard = `
+      <div class="post-card">
+        <div class="image-slider" id="slider-${index}">
+          ${post.uploads.map((upload, i) => `
+            <img src="${upload.imagePath}" class="slider-image" style="opacity: ${i === 0 ? 1 : 0};">
+          `).join('')}
+          <img src="${post.image}" class="slider-image" style="opacity: ${post.uploads.length === 0 ? 1 : 0};">
+          <button class="slider-arrow left" onclick="previousImage(${index})">&#10094;</button>
+          <button class="slider-arrow right" onclick="nextImage(${index})">&#10095;</button>
+        </div>
+
+        <h3 class="project-title">${post.name}</h3>
+
+        <div class="info-actions">
+          <p class="user-name">By: ${post.user.fullName}</p>
+          <div class="actions">
+            <button class="accept-btn" onclick="acceptPost('${post._id}', ${index})">Accept</button>
+            <button class="reject-btn" onclick="rejectPost('${post._id}', ${index})">Reject</button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.insertAdjacentHTML("beforeend", postCard);
+  });
+}
+
+  function nextImage(index) {
+    const images = document.querySelectorAll(`#slider-${index} .slider-image`);
+    let current = Array.from(images).findIndex(img => img.style.opacity == "1");
+    images[current].style.opacity = "0";
+
+    const next = (current + 1) % images.length;
+    images[next].style.opacity = "1";
+  }
+
+  function previousImage(index) {
+    const images = document.querySelectorAll(`#slider-${index} .slider-image`);
+    let current = Array.from(images).findIndex(img => img.style.opacity == "1");
+    images[current].style.opacity = "0";
+
+    const prev = (current - 1 + images.length) % images.length;
+    images[prev].style.opacity = "1";
+  }
+
+  async function acceptPost(projectId) {
+  try {
+    const response = await fetch(`/admin-pending/handmade/accept/${projectId}/0`, {
+      method: 'POST'
+    });
+    if (!response.ok) throw new Error("Failed to accept image");
+    alert(`Image accepted successfully! User awarded 5 points.`);
+    fetchPendingPosts();
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+}
+
+
+async function rejectPost(projectId) {
+  try {
+    const response = await fetch(`/admin-pending/handmade/reject/${projectId}/0`, {
+      method: 'POST'
+    });
+    if (!response.ok) throw new Error("Failed to reject image");
+    alert("Image rejected and removed.");
+    fetchPendingPosts();
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+}
+
+
+  document.addEventListener("DOMContentLoaded", fetchPendingPosts);
+  </script>
+
+  
+
+
+
+</body>
+</html>

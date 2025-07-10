@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/global.css" rel="stylesheet" />
+  <link href="css/about.css" rel="stylesheet" />
+  <link href="css/upload.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+  <title>Select Materials</title>
+
+  <style>
+    /* Container for cards */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: flex-start;
+    }
+  
+    /* Base card */
+    .selectable-card {
+      position: relative;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
+      background: linear-gradient(180deg, #f5f5f5, #eaeaea);
+      padding: 1rem 1.5rem;
+      flex: 1 1 220px;
+      text-align: center;
+      min-width: 200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border: 2px solid transparent;
+    }
+  
+    /* Glow when selected */
+    .selectable-card.selected {
+      box-shadow: 0 0 12px 4px rgba(40, 167, 69, 0.6);
+      border: 2px solid #28a745;
+    }
+  
+    /* Hide checkbox and radio button */
+    .selectable-card input[type="checkbox"],
+    .selectable-card input[type="radio"] {
+      display: none;
+    }
+  
+    /* Content inside the card */
+    .selectable-card span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background-color: transparent;
+      color: #1e4637;
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+      border: none;
+    }
+  
+    /* Icon */
+    .selectable-card .icon-left {
+      font-size: 1.2rem;
+    }
+  
+    /* Hover effect */
+    .selectable-card:hover {
+      transform: scale(1.02);
+    }
+
+
+
+    .main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: #e8f5e9;
+}
+
+/* Hero Header */
+.hero-header {
+  text-align: center;
+  background: linear-gradient(to right, #66bb6a, #388e3c);
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.title1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* Button Style */
+.generate-btn-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.generate-btn {
+  background: linear-gradient(to right, #66bb6a, #388e3c);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 28px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.generate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.star-icon {
+  font-size: 1.5rem;
+}
+  </style>
+  
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <%- include('partials/header')%>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <header class="hero-header">
+      <h1 class="title1">Select Materials and Categories</h1>
+      <p class="subtitle">Choose the materials and product categories that apply to your company.</p>
+    </header>
+
+    <form id="industrialForm" action="select-materials/generate-product" method="POST">
+      <!-- MATERIALS -->
+      <section class="card-section">
+        <h2>Select Materials</h2>
+        <div class="card-container">
+          <% const materialData = [
+            { name: 'Plastic', icon: 'fa-recycle' },
+            { name: 'Metal', icon: 'fa-industry' },
+            { name: 'Wood', icon: 'fa-tree' },
+            { name: 'Glass', icon: 'fa-glass-martini' },
+            { name: 'Fabric/Textiles', icon: 'fa-tshirt' }
+          ]; %>
+          <% materialData.forEach(material => { %>
+            <label class="selectable-card fancy-card">
+              <input type="checkbox" name="materials" value="<%= material.name %>">
+              <span><i class="fa <%= material.icon %> icon-left"></i> <%= material.name %></span>
+            </label>
+          <% }); %>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="card-section">
+        <h2>Select Product Categories</h2>
+        <div class="card-container">
+          <% const categories = [
+            'Furniture Manufacturing',
+            'Home Storage Solutions',
+            'Office & Workspace Furniture',
+            'Kitchenware & Organizers',
+            'Lighting & Fixtures',
+            'Mattresses & Upholstery',
+            'Sustainable Furniture Solutions'
+          ]; %>
+          <% categories.forEach(category => { %>
+            <label class="selectable-card fancy-card">
+              <input type="radio" name="category" value="<%= category %>">
+              <span><%= category %></span>
+            </label>
+          <% }); %>
+        </div>
+      </section>
+
+      <!-- Generate Button -->
+      <div class="generate-btn-wrapper">
+        <button type="submit" class="generate-btn"><span class="star-icon">✨</span> Generate</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- JavaScript for toggle glow -->
+  <script>
+    document.querySelectorAll('.selectable-card input[type="checkbox"], .selectable-card input[type="radio"]').forEach(input => {
+      const card = input.closest('.selectable-card');
+  
+      // Initialize state
+      if (input.checked) {
+        card.classList.add('selected');
+      }
+  
+      input.addEventListener('change', function () {
+        // If this is a radio input
+        if (input.type === 'radio') {
+          // Remove 'selected' from all cards sharing the same name
+          const groupName = input.name;
+          document.querySelectorAll('.selectable-card input[name="' + groupName + '"]').forEach(radio => {
+            const parentCard = radio.closest('.selectable-card');
+            parentCard.classList.remove('selected');
+          });
+  
+          // Then add it back only to the newly selected one
+          if (this.checked) {
+            card.classList.add('selected');
+          }
+        }
+  
+        // If this is a checkbox input
+        if (input.type === 'checkbox') {
+          if (this.checked) {
+            card.classList.add('selected');
+          } else {
+            card.classList.remove('selected');
+          }
+        }
+      });
+    });
+  </script>
+  
+  
+
+  <!-- jQuery and Upload JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- <script src="./js/upload.js"></script> -->
+</body>
+</html>

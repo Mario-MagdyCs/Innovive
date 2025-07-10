@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innovive Dashboard - Achievements</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e6f4e6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(to bottom, #66bb6a, #388e3c);
+      width: 240px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      background: #ffffff33;
+      border-radius: 50%;
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .user-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-size: 17px;
+      gap: 12px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #2e7d32;
+      font-weight: bold;
+    }
+
+    /* Main */
+    .main-content {
+      margin-left: 240px;
+      flex: 1;
+      background: white;
+      padding: 60px 50px;
+      min-height: 100vh;
+    }
+
+    .page-title {
+      font-size: 34px;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .points-section {
+      background: #f0fff3;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 128, 0, 0.08);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .points-section h2 {
+      color: #2e7d32;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .points-bar {
+      width: 100%;
+      height: 20px;
+      background: #c8e6c9;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .points-fill {
+      height: 100%;
+      width: 0;
+      background: #66bb6a;
+      border-radius: 10px;
+      transition: width 1.5s ease-out;
+    }
+
+    .points-section p {
+      color: #4caf50;
+      font-size: 18px;
+    }
+
+    /* Button */
+    .locked-badges-btn {
+      display: block;
+      margin-left: auto; /* aligned to right */
+      margin-right: 0;
+      margin-bottom: 20px;
+      padding: 14px 26px;
+      background: #43a047;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .locked-badges-btn:hover {
+      background: #388e3c;
+    }
+
+    /* Grid */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .badge-card {
+      position: relative;
+      background: #f9fff9;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 128, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    .badge-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .badge-icon img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .badge-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-bottom: 8px;
+    }
+
+    .badge-desc {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .share-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .badge-card:hover .share-btn {
+      opacity: 1;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      padding: 30px;
+      border-radius: 16px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      font-size: 24px;
+      color: #2e7d32;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: #388e3c;
+      cursor: pointer;
+    }
+
+    .locked-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .locked-badge {
+      background: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .locked-badge img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .lock-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      color: lightgrey;
+      pointer-events: none;
+    }
+
+    .locked-badge p {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #66bb6a;
+      width: 30%; /* Customize this for each badge */
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 70px;
+      }
+      .user-name {
+        display: none;
+      }
+      nav a {
+        font-size: 12px;
+        justify-content: center;
+      }
+      .main-content {
+        margin-left: 70px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="avatar"><%= user.fullName.split(' ').map(n => n[0].toUpperCase()).join('') %></div>
+  <div class="user-name"><%=user.fullName%></div>
+  <nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/profile_info"><i class="fas fa-user"></i> Profile</a>
+    <a href="/sustainability_report"><i class="fas fa-leaf"></i> Sustainability Report</a>
+    <a href="/recycled_history"><i class="fas fa-recycle"></i> Recycling History</a>
+    <a href="/favourites"><i class="fas fa-star"></i> Favourites</a>
+    <a href="/achievements" class="active"><i class="fas fa-trophy"></i> Achievements</a>
+    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </nav>
+</div>
+
+<!-- Main -->
+<!-- Points Section -->
+<div class="main-content">
+  <h1 class="page-title">Your Achievements</h1>
+
+  <div class="points-section">
+    <h2>Points This Month: <%= points %></h2>
+    <div class="points-bar">
+      <div class="points-fill" id="pointsFill" data-points="<%= points %>"></div>
+    </div>
+    <p>Points reset every month. Keep recycling to earn more!</p>
+  </div>
+
+  <button class="locked-badges-btn" onclick="openModal()">Explore More Badges</button>
+
+  <!-- Earned Badges -->
+  <% if (earnedBadges.length > 0) { %>
+    <div class="achievements-grid">
+      <% earnedBadges.forEach(badge => { %>
+        <div class="badge-card">
+          <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+          <div class="badge-icon">
+            <img src="<%= badge.image %>" alt="<%= badge.name %>">
+          </div>
+          <div class="badge-title"><%= badge.name %></div>
+          <div class="badge-desc"><%= badge.description %></div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p style="text-align: center; color: #777; font-size: 16px; margin-top: 20px;">
+      You haven't earned any badges yet. Start sharing to unlock achievements!
+    </p>
+  <% } %>
+  
+</div>
+
+<!-- Locked Badges Modal -->
+<div class="modal" id="lockedModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Locked Badges</h2>
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+    </div>
+
+    <div class="locked-grid">
+      <% lockedBadges.forEach(badge => { %>
+        <div class="locked-badge">
+          <img src="<%= badge.image %>" alt="<%= badge.name %>">
+          <div class="lock-icon"><i class="fas fa-lock"></i></div>
+          <p><%= badge.name %></p>
+          <div class="progress-bar">
+            <div class="progress-fill" data-progress="<%= badge.progress %>"></div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('lockedModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('lockedModal').style.display = 'none';
+  }
+
+  window.onload = function () {
+    // Set points bar
+    const fillElem = document.getElementById('pointsFill');
+    const userPoints = parseInt(fillElem.dataset.points || '0', 10);
+    const fillPercent = Math.min((userPoints / 500) * 100, 100);
+    fillElem.style.width = fillPercent + '%';
+
+    // Set locked badge bars
+    document.querySelectorAll('.progress-fill').forEach(el => {
+      const p = parseFloat(el.dataset.progress || '0');
+      el.style.width = Math.min(p, 100) + '%';
+    });
+  };
+</script>
+
+
+

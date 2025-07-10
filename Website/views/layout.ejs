@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || "Innovive" %></title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/chatbot.css" />
+
+    <!-- Material Symbols for Chatbot -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+
+    <% if (stylesheets) { stylesheets.forEach(href => { %>
+      <link rel="stylesheet" href="<%= href %>" />
+    <% }) } %>
+  </head>
+
+  <body>
+    <%- include("partials/header") %>
+
+    <main>
+      <%- body %> <!-- Page content goes here -->
+    </main>
+
+    <%- include("partials/footer") %>
+    <%- include("partials/chatbot") %>
+
+    <!-- Global JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/chatbot.js" defer></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/global.css" rel="stylesheet">
+	<link href="/css/index.css" rel="stylesheet">
+
+    <script>
+        window.onscroll = function () { myFunction() };
+        var navbar_sticky = document.getElementById("navbar_sticky");
+        var sticky = navbar_sticky.offsetTop;
+        var navbar_height = document.querySelector('.navbar').offsetHeight;
+        function myFunction() {
+            if (window.pageYOffset >= sticky + navbar_height) {
+                navbar_sticky.classList.add("sticky")
+                document.body.style.paddingTop = navbar_height + 'px';
+            } else {
+                navbar_sticky.classList.remove("sticky");
+                document.body.style.paddingTop = '0'
+            }
+        }
+    </script>
+
+    <% if (scripts) { scripts.forEach(src => { %>
+      <script src="<%= src %>" defer></script>
+    <% }) } %>
+  </body>
+</html>

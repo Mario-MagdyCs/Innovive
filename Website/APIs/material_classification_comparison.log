@@ -1,0 +1,82 @@
+2025-05-09 20:00:01,172 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2025-05-09 20:00:01,174 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 20:00:42,877 - material_classifier - INFO - Received POST to /classify
+2025-05-09 20:00:42,882 - material_classifier - INFO - Processing 1 images
+2025-05-09 20:00:56,353 - material_classifier - INFO - Calling GPT Vision API for classification
+2025-05-09 20:01:00,929 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-09 20:01:00,942 - material_classifier - INFO - GPT Vision API response time: 4.59s
+2025-05-09 20:01:00,943 - material_classifier - INFO - Model classification: aluminum_food_can
+2025-05-09 20:01:00,943 - material_classifier - INFO - GPT classification: aluminum_food_can
+2025-05-09 20:01:00,944 - material_classifier - INFO - GPT additional materials: 
+2025-05-09 20:01:00,944 - material_classifier - INFO - GPT confidence: high
+2025-05-09 20:01:00,944 - material_classifier - INFO - Common materials: aluminum_food_can
+2025-05-09 20:01:00,945 - material_classifier - INFO - Model-only materials: 
+2025-05-09 20:01:00,945 - material_classifier - INFO - GPT-only materials: 
+2025-05-09 20:01:01,352 - material_classifier - ERROR - Error cleaning up file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\shahd\\AppData\\Local\\Temp\\tmpiad1kyjp.jpg'
+2025-05-09 20:01:01,355 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:01:01] "POST /classify HTTP/1.1" 200 -
+2025-05-09 20:02:10,690 - material_classifier - INFO - Received POST to /classify
+2025-05-09 20:02:10,694 - material_classifier - INFO - Processing 1 images
+2025-05-09 20:02:15,267 - material_classifier - INFO - Calling GPT Vision API for classification
+2025-05-09 20:02:21,281 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-09 20:02:21,285 - material_classifier - INFO - GPT Vision API response time: 6.01s
+2025-05-09 20:02:21,285 - material_classifier - INFO - Model classification: cardboard
+2025-05-09 20:02:21,291 - material_classifier - INFO - GPT classification: 
+2025-05-09 20:02:21,292 - material_classifier - INFO - GPT additional materials: other: wood
+2025-05-09 20:02:21,301 - material_classifier - INFO - GPT confidence: high
+2025-05-09 20:02:21,302 - material_classifier - INFO - Common materials: 
+2025-05-09 20:02:21,307 - material_classifier - INFO - Model-only materials: cardboard
+2025-05-09 20:02:21,310 - material_classifier - INFO - GPT-only materials: 
+2025-05-09 20:02:21,847 - material_classifier - ERROR - Error cleaning up file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\shahd\\AppData\\Local\\Temp\\tmpnkyj97wn.jpg'
+2025-05-09 20:02:21,852 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:02:21] "POST /classify HTTP/1.1" 200 -
+2025-05-09 20:05:08,176 - material_classifier - INFO - Received POST to /classify
+2025-05-09 20:05:08,189 - material_classifier - INFO - Processing 1 images
+2025-05-09 20:05:12,538 - material_classifier - INFO - Calling GPT Vision API for classification
+2025-05-09 20:05:16,529 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-09 20:05:16,533 - material_classifier - INFO - GPT Vision API response time: 3.99s
+2025-05-09 20:05:16,534 - material_classifier - INFO - Model classification: cardboard
+2025-05-09 20:05:16,534 - material_classifier - INFO - GPT classification: 
+2025-05-09 20:05:16,535 - material_classifier - INFO - GPT additional materials: other: wood
+2025-05-09 20:05:16,535 - material_classifier - INFO - GPT confidence: high
+2025-05-09 20:05:16,535 - material_classifier - INFO - Common materials: 
+2025-05-09 20:05:16,536 - material_classifier - INFO - Model-only materials: cardboard
+2025-05-09 20:05:16,536 - material_classifier - INFO - GPT-only materials: 
+2025-05-09 20:05:16,985 - material_classifier - ERROR - Error cleaning up file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\shahd\\AppData\\Local\\Temp\\tmp1gh0xduv.jpg'
+2025-05-09 20:05:16,987 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:05:16] "POST /classify HTTP/1.1" 200 -
+2025-05-09 20:15:24,661 - material_classifier - INFO - Received POST to /classify
+2025-05-09 20:15:24,666 - material_classifier - INFO - Processing 1 images
+2025-05-09 20:15:28,063 - material_classifier - INFO - Calling GPT Vision API for classification
+2025-05-09 20:15:30,541 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-09 20:15:30,545 - material_classifier - INFO - GPT Vision API response time: 2.48s
+2025-05-09 20:15:30,546 - material_classifier - INFO - Model classification: cardboard
+2025-05-09 20:15:30,547 - material_classifier - INFO - GPT classification: 
+2025-05-09 20:15:30,548 - material_classifier - INFO - GPT additional materials: other: wood
+2025-05-09 20:15:30,550 - material_classifier - INFO - GPT confidence: high
+2025-05-09 20:15:30,569 - material_classifier - INFO - Common materials: 
+2025-05-09 20:15:30,569 - material_classifier - INFO - Model-only materials: cardboard
+2025-05-09 20:15:30,570 - material_classifier - INFO - GPT-only materials: 
+2025-05-09 20:15:30,930 - material_classifier - ERROR - Error cleaning up file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\shahd\\AppData\\Local\\Temp\\tmp3_zi7m5d.jpg'
+2025-05-09 20:15:30,931 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:15:30] "POST /classify HTTP/1.1" 200 -
+2025-05-11 03:16:24,400 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.107:5000
+2025-05-11 03:16:24,401 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 03:44:16,036 - material_classifier - INFO - Received POST to /classify
+2025-05-11 03:44:16,038 - material_classifier - INFO - Processing 1 images
+2025-05-11 03:44:24,090 - material_classifier - INFO - Calling GPT Vision API for classification
+2025-05-11 03:44:31,108 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-11 03:44:31,114 - material_classifier - INFO - Raw GPT response: {"glossary":["glass_jar"]}
+2025-05-11 03:44:31,115 - material_classifier - INFO - Raw materials identified by GPT: []
+2025-05-11 03:44:31,115 - material_classifier - INFO - GPT Vision API response time: 7.03s
+2025-05-11 03:44:31,115 - material_classifier - INFO - Valid materials identified by GPT: []
+2025-05-11 03:44:31,115 - material_classifier - INFO - Model classification: glass_jar
+2025-05-11 03:44:31,115 - material_classifier - INFO - GPT classification: None
+2025-05-11 03:44:31,115 - material_classifier - INFO - Common materials: None
+2025-05-11 03:44:31,116 - material_classifier - INFO - Model-only materials: glass_jar
+2025-05-11 03:44:31,116 - material_classifier - INFO - GPT-only materials: None
+2025-05-11 03:44:31,116 - material_classifier - WARNING - GPT didn't identify any valid materials while model did - potential edge case
+2025-05-11 03:44:31,281 - material_classifier - ERROR - Error cleaning up file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpo4jyvxmo.jpg'
+2025-05-11 03:44:31,284 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 03:44:31] "POST /classify HTTP/1.1" 200 -

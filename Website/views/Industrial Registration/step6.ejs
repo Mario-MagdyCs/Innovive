@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 6 - Material Usage</title>
+    <link rel="stylesheet" href="/css/registration.css">
+</head>
+<body>
+    <div class="progress-container">
+        Step 6 of 7
+    </div>
+    <div class="progress-bar" style="width: 83%;">
+        <div class="progress"></div>
+    </div>
+    <div class="container">
+        <h2>What Materials Does Your Facility Work With?</h2>
+        <p class="subtext">Select all the materials commonly used in your production.</p>
+        <form id="materials-form">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="materials" value="Plastic">
+                    Plastic
+                </label>
+                <label>
+                    <input type="checkbox" name="materials" value="Metal">
+                    Metal
+                </label>
+                <label>
+                    <input type="checkbox" name="materials" value="Wood">
+                    Wood
+                </label>
+                <label>
+                    <input type="checkbox" name="materials" value="Glass">
+                    Glass
+                </label>
+                <label>
+                    <input type="checkbox" name="materials" value="Fabric/Textiles">
+                    Fabric/Textiles
+                </label>
+                <label>
+                    <input type="checkbox" name="materials" value="Paper/Cardboard">
+                    Paper/Cardboard
+                </label>
+                <label>
+                    Other: <input type="text" name="materials_other">
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/register-industrial/step5";
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

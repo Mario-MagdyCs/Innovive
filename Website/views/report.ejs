@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recycling Performance</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e6f4e6;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      padding: 60px 30px;
+    }
+
+    .card {
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      padding: 40px 50px;
+      box-shadow:
+        0 4px 12px rgba(102, 187, 106, 0.25),
+        0 1px 3px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(to bottom, #66bb6a, #388e3c);
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(to right, #66bb6a, #388e3c);
+      border-radius: 2px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .stat-box {
+      background-color: #f0fff3;
+      border: 2px solid #a5d6a7;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .stat-box h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .stat-box p {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .material-bar {
+      margin-top: 20px;
+    }
+
+    .material-percentage {
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #2e7d32;
+    }
+
+    .progress {
+      background: #e0f2e9;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #66bb6a, #388e3c);
+    }
+
+    .impact-message {
+      background-color: #f0fff3;
+      border: 2px solid #a5d6a7;
+      border-radius: 16px;
+      padding: 25px 30px;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2e7d32;
+      text-align: center;
+      line-height: 1.6;
+      box-shadow: 0 4px 8px rgba(0, 128, 0, 0.08);
+    }
+
+    canvas {
+      margin-top: 30px;
+      width: 100% !important;
+      max-width: 100%;
+    }
+
+    a.button {
+      padding: 12px 24px;
+      background: #43a047;
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Filter & Export -->
+   
+
+    <!-- Header -->
+    <div class="card">
+      <h2 class="section-title">Your Recycling Performance</h2>
+      <div class="impact-message">
+        <p><strong>Menna</strong>, you're making a real difference 🌍<br>
+        Your efforts are helping us create a cleaner, greener world every day. Keep it up! 💚</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card">
+      <h3 class="section-title">Quick Stats</h3>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h3>♻️ Projects Recycled</h3>
+          <p>28 Projects</p>
+        </div>
+        <div class="stat-box">
+          <h3>🌟 Most Recycled</h3>
+          <p>Plastic</p>
+        </div>
+        <div class="stat-box">
+          <h3>🌿 CO₂ Saved</h3>
+          <p>14.2 kg</p>
+        </div>
+        <div class="stat-box">
+          <h3>💧 Water Saved</h3>
+          <p>44 L</p>
+        </div>
+        <div class="stat-box">
+          <h3>🔁 Streak</h3>
+          <p>6 Weeks</p>
+        </div>
+        <div class="stat-box">
+          <h3>🪴 Eco Score</h3>
+          <p>92 / 100</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Pie Chart -->
+<div class="card">
+    <h3 class="section-title">Top Materials Breakdown</h3>
+    <div style="max-width: 400px; margin: 0 auto;">
+      <canvas id="materialsPieChart"></canvas>
+    </div>
+  </div>
+  
+
+    <!-- Performance Chart -->
+    <div class="card">
+      <h3 class="section-title">Recycling Over Time</h3>
+      <canvas id="recyclingChart"></canvas>
+    </div>
+
+    <!-- Achievements -->
+    <div class="card">
+      <h3 class="section-title">Your Achievements</h3>
+      <div class="stats-grid">
+        <div class="stat-box" style="font-weight:bolder ;">🏅 100 Projects Recycled</div>
+        <div class="stat-box" style="font-weight:bolder ;" >🥇 Plastic Master</div>
+        <div class="stat-box " style="font-weight:bolder ;">🎯 Weekly Goal Streak</div>
+      </div>
+    </div>
+
+    <!-- Goal Tracker -->
+    <div class="card">
+      <h3 class="section-title">Your Monthly Goal</h3>
+      <p style="color: #2e7d32; font-size: 16px; margin-bottom: 10px;">You've completed <strong>10 of 15</strong> projects</p>
+      <div class="progress"><div class="progress-bar" style="width: 67%"></div></div>
+      <button onclick="window.print()" style="margin-top: 5%;margin-left: 37%; padding: 12px 30px; background: #43a047; color: white; font-size: 16px; border: none; border-radius: 10px; cursor: pointer;">
+        📄 Download Report
+      </button>
+    </div>
+
+
+
+   
+  </div>
+
+  <!-- Charts -->
+  <script>
+    const ctx = document.getElementById('recyclingChart').getContext('2d');
+    const recyclingChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+    datasets: [{
+      label: 'Projects Recycled',
+      data: [3, 6, 9, 10],
+      fill: true,
+      backgroundColor: 'rgba(102, 187, 106, 0.1)',
+      borderColor: '#388e3c',
+      borderWidth: 3,
+      tension: 0.3,
+      pointBackgroundColor: '#2e7d32',
+      pointRadius: 5,
+      pointHoverRadius: 7
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: '#2e7d32',
+          font: {
+            weight: 'bold',
+            size: 14
+          },
+          padding: 20
+        }
+      },
+      tooltip: {
+        backgroundColor: '#388e3c',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        cornerRadius: 8,
+        padding: 10
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: '#2e7d32',
+          stepSize: 1
+        },
+        grid: {
+          color: '#c8e6c9'
+        }
+      },
+      x: {
+        ticks: {
+          color: '#2e7d32'
+        },
+        grid: {
+          color: '#e0f2e9'
+        }
+      }
+    }
+  }
+});
+
+    const pieCtx = document.getElementById('materialsPieChart').getContext('2d');
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Plastic', 'Glass', 'Metal'],
+        datasets: [{
+          data: [50, 30, 20],
+          backgroundColor: ['#66bb6a', '#a5d6a7', '#388e3c'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: '#2e7d32',
+              font: { weight: 'bold' }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

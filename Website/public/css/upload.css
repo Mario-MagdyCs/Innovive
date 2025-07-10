@@ -1,0 +1,1066 @@
+:root {
+  --primary: #54be73;
+  --light-grey:rgba(45, 69, 45, 0.1);
+  --bg-panel: #2d452d;
+  --text: #f0f0f0;
+  --text-muted: #888;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#header {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dark-container {
+  flex-grow: 1;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-direction: row;
+  padding: 40px;
+  gap: 30px;
+}
+
+/* .wrapper{
+  display: flex;
+} */
+
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100vh; /* <-- important */
+}
+
+
+
+
+
+
+
+/* Panel Container */
+/* Responsive Settings Panel */
+.settings-panel {
+  background: linear-gradient(to bottom, #66bb6a, #388e3c);
+  width: 20%;
+  padding: 30px 24px 40px 24px;
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #fff;
+  position: relative;
+  height: auto;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  margin-top: 4.5%;
+  z-index: 999; /* Always on top */
+}
+
+/* Responsive for Smaller Screens */
+@media (max-width: 768px) {
+  .settings-panel {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    padding: 20px;
+    position: relative;
+  }
+
+  .settings-panel h3 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .settings-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .setting-group {
+    margin-bottom: 20px;
+  }
+
+  .number-buttons,
+  .similarity-buttons,
+  .category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .number-btn,
+  .similarity-btn,
+  .category-btn {
+    flex: 1 1 30%;
+    font-size: 0.9rem;
+    padding: 10px 0;
+  }
+}
+
+/* Close Button (X Icon) */
+.settings-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  padding: 6px 10px;
+  transition: background 0.2s ease;
+}
+
+.settings-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Panel Heading */
+.settings-panel h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.settings-panel h3 i {
+  color: #ffffffcc;
+}
+
+/* Grouping */
+.setting-group {
+  margin-bottom: 28px;
+}
+
+/* Labels */
+.settings-panel label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #f0f0f0;
+}
+
+/* Button Rows */
+.number-buttons,
+.similarity-buttons,
+.category-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.number-btn,
+.similarity-btn,
+.category-btn {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.number-btn:hover,
+.similarity-btn:hover ,
+.category-btn:hover{
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Active Buttons */
+.number-btn.active,
+.similarity-btn.active,
+.category-btn.active {
+  background-color: #fff;
+  color: #2e7d32;
+  font-weight: bold;
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* /////////////////////////////////////////////////// */
+
+.main-area {
+  flex-grow: 1;
+}
+
+.main-upload-box {
+  background: var(--bg-panel);
+  padding: 24px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,255,128,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-action-row {
+  
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--light-grey);
+  border-radius: 14px;
+  padding: 10px 20px;
+  gap: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.upload-full-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 0;
+  color: #ffffff;
+  background: linear-gradient(to left, #66bb6a, #3fc245);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.upload-full-label:hover {
+  background-color: rgba(50, 154, 81,0.6);
+  color: whitesmoke;
+  border-color: white;
+}
+
+.generate-modern-btn,.redirect-btn {
+  padding: 10px 24px;
+  background: linear-gradient(to right, #54be73, #c2efc3);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1%;
+}
+
+.generate-modern-btn:hover,.redirect-btn:hover {
+  box-shadow: 0 0 20px rgba(67, 255, 153, 0.6);
+  transform: translateY(-1px);
+}
+
+.example-gallery {
+  margin-top: 40px;
+  display: flex;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  justify-items: center; 
+  align-items: center; 
+  width: 100%;
+}
+
+
+.gallery-item {
+  width: 90%; /* or 100%, depending how wide you want the images */
+  max-width: 250px; /* control max size */
+  background: #222;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.intro-section {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #2e473b;
+}
+
+.gradient-text {
+  font-size: 3rem;
+  font-weight: 700;
+  /* background: linear-gradient(90deg, #bea584, #5a4a2e, #113c10, #b56a28); */
+  background: linear-gradient(to bottom, #66bb6a, #388e3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-align: center;
+  display: inline-block;
+}
+
+.intro-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 10px auto 0;
+  color: #3c5c4c;
+}
+
+
+.upload-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-label-modern {
+  background-color: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.upload-label-modern:hover {
+  background-color:#2d452d;
+  border-color: #43ff99;
+  box-shadow: 0 0 10px rgba(67, 255, 153, 0.2);
+}
+
+.upload-label-modern i {
+  font-size: 1.2rem;
+  color: #43ff99;
+}
+
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.settings-icon {
+  background: linear-gradient(to bottom, #66bb6a, #66bb6a);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 2%;
+}
+
+.settings-icon i {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.settings-icon:hover {
+  background-color: rgba(50, 154, 81,0.6);
+  color: whitesmoke;
+  border-color: white;
+}
+
+
+.hidden {
+  display: none !important;
+}
+
+.full-width {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.upload-bar-active {
+  background: #2d452d;
+  border-radius: 14px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.image-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 70%;
+}
+
+.image-previews img {
+  height: 70px;
+  width: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid #333;
+}
+
+.generate-modern-btn-active,.redirect-btn {
+  padding: 10px 24px;
+  background: linear-gradient(to top, #66bb6a, #3fc245);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 0 14px rgba(8, 210, 99, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2%;
+}
+
+
+.image-previews {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 1%;
+}
+
+.image-previews .preview-container {
+  position: relative;
+}
+
+.image-previews img {
+  height: 120px;
+  width: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.image-previews img:hover {
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.generated-projects-section {
+  margin-top: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  background: var(--light-grey);
+  border-radius: 20px;
+  text-align: center;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+.new-projects-grid {
+  padding-top: 3%;
+}
+
+.example-gallery,.new-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+
+.gallery-item {
+  background: white;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.section-title {
+  text-align: left;
+  font-family: 'Abril Fatface', serif;
+  letter-spacing: 2px;
+  /* font-size: 18px; */
+  /* font-family: 'Poppins', sans-serif; */
+  font-weight: 600;
+  /* background: linear-gradient(to right, #54be73, #c2efc3); */
+  background: black;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px 10px;
+}
+
+
+.loading-spinner {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #2d452d;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.placeholder {
+  background: linear-gradient(90deg, var(--primary), #5aa588);
+  background-size: 400% 400%;
+  animation: shimmer 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.placeholder span {
+  background: linear-gradient(90deg, #ae7878, #c3d9d3, #c5a5df, #d8ffd8);
+  background-size: 400% 400%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 22px;
+  font-weight: 600;
+  animation: shimmer 2s infinite linear;
+}
+
+
+
+.project-card {
+  position: relative;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.project-card,
+.placeholder {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 3 / 4; /* approx 340x440 */
+  height: auto; /* Allow height to adapt */
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Name Banner */
+.project-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 2;
+}
+
+/* Hover overlay for center button */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.show-info-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.show-info-btn:hover {
+  background: white;
+  color: #2e7d32;
+}
+
+/* New: Top right icon buttons */
+.icon-buttons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+}
+
+.project-card:hover .icon-buttons {
+  opacity: 1;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #2e7d32;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+.icon-btn:hover {
+  background: white;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.project-card {
+  position: relative;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 340px;
+height: 440px; 
+  transition: transform 0.3s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Name Banner */
+.project-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 2;
+}
+
+/* Hover overlay for center button */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.show-info-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.show-info-btn:hover {
+  background: white;
+  color: #2e7d32;
+}
+
+/* New: Top right icon buttons */
+.icon-buttons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+}
+
+.project-card:hover .icon-buttons {
+  opacity: 1;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #2e7d32;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+.icon-btn:hover {
+  background: white;
+}
+
+
+
+.toastRed,.toastGreen {
+  visibility: hidden;
+  width: 100%;
+  max-width: 450px;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 14px 20px;
+  position: fixed;
+  z-index: 9999;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+}
+
+.toastRed{
+  background-color: #e43838;
+}
+
+.toastGreen{
+  background-color: #4caf50;
+}
+
+.toastGreen.show,.toastRed.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 60px;
+}
+
+
+
+.share-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.share-modal h2 {
+  font-size: 24px;
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+.share-modal p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.share-modal .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.share-modal .cancel-btn {
+  background: #ccc;
+  border: none;
+  padding: 10px 24px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.share-modal .cancel-btn:hover {
+  background: #b3b3b3;
+}
+
+.share-modal #confirmShareBtn {
+  background: #43a047;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.share-modal #confirmShareBtn:hover {
+  background: #2e7d32;
+}
+
+/* Close button styling */
+.share-modal .close-btn {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 24px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.share-modal .close-btn:hover {
+  color: #000;
+}
+#confirmModal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* make sure it's above everything */
+  backdrop-filter: blur(2px); /* optional: adds a nice blur behind modal */
+}
+#handmadeModal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* make sure it's above everything */
+  backdrop-filter: blur(2px); /* optional: adds a nice blur behind modal */
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.shared-indicator {
+  background: #4caf50 !important; /* Vibrant green */
+  color: white !important;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+  pointer-events: none;
+  animation: pulseTick 1s ease-in-out;
+}
+
+@keyframes pulseTick {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+/* View More Button Container */
+.view-more-container {
+  justify-content: flex-end;
+  display: flex;
+  /* text-align: center; */
+  margin-top: 20px;
+}
+
+/* 3D View More Button */
+.view-more-btn {
+  background: linear-gradient(145deg, #66bb6a, #3fc245);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(50, 154, 81, 0.3);
+  display: inline-flex; /* Flexbox for inline layout */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between text and icon */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon Alignment */
+.view-more-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Button Hover Effect */
+.view-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(50, 154, 81, 0.4);
+}
+
+.view-more-btn:hover .view-more-icon {
+  transform: translateX(4px); /* Slide the icon slightly to the right on hover */
+}

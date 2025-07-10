@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innovive Dashboard - Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e6f4e6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: linear-gradient(to bottom, #66bb6a, #388e3c);
+      width: 240px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      background: #ffffff33;
+      border-radius: 50%;
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .user-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-size: 17px;
+      gap: 12px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #2e7d32;
+      font-weight: bold;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      flex: 1;
+      background: white;
+      padding: 60px 50px;
+      min-height: 100vh;
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .profile-header h1 {
+      font-size: 36px;
+      color: #2e7d32;
+    }
+
+    .profile-card {
+      background: #f9fff9;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .profile-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #2e7d32;
+      font-size: 16px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-wrapper input,
+    .input-wrapper select {
+      flex: 1;
+      padding: 14px;
+      border: 2px solid #a5d6a7;
+      border-radius: 8px;
+      background-color: #f0f9f0;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    input[readonly], .fake-select {
+      background-color: #e8f5e9;
+      color: #555;
+      cursor: default;
+    }
+
+    select {
+      display: none;
+    }
+
+    .edit-icon {
+      color: #bbb;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .edit-icon:hover {
+      color: #888;
+    }
+
+    .save-btn {
+      grid-column: span 2;
+      margin-top: 20px;
+      padding: 16px;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: none;
+    }
+
+    .save-btn:hover {
+      background-color: #388e3c;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+      }
+
+      .user-name {
+        display: none;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 10px;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .main-content {
+        margin-left: 70px;
+        padding: 30px 20px;
+      }
+
+      .profile-form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="avatar"><%= user.fullName.split(' ').map(n => n[0].toUpperCase()).join('') %></div>
+  <div class="user-name"><%=user.fullName%></div>
+  <nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/profile_info" class="active"><i class="fas fa-user"></i> Profile</a>
+    <a href="/sustainability_report"><i class="fas fa-leaf"></i> Sustainability Report</a>
+    <a href="/recycled_history"><i class="fas fa-recycle"></i> Recycling History</a>
+    <a href="/favourites"><i class="fas fa-star"></i> Favourites</a>
+    <a href="./achievements"><i class="fas fa-trophy"></i> Achievements</a>
+    <a href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    
+  </nav>
+</div>
+
+<div class="main-content">
+  <div class="profile-header">
+    <h1>Profile Details</h1>
+  </div>
+
+  <div class="profile-card">
+    <h2 class="section-title">Personal Information</h2>
+    <div id="messageBox" style="display: none; padding: 12px; margin-bottom: 20px; border-radius: 8px; font-weight: bold;"></div>
+
+    <form class="profile-form" id="profileForm" method="POST" action="/profile_info">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <div class="input-wrapper">
+          <input type="text" id="fullName" value="<%=user.fullName%>" readonly />
+          <i class="fas fa-pen edit-icon" onclick="enableEdit('fullName')"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <input type="email" id="email" value="<%=user.email%>" readonly />
+          <i class="fas fa-pen edit-icon" onclick="enableEdit('email')"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="userType">User Type</label>
+        <div class="input-wrapper">
+          <input type="text" id="userType" value="<%=user.userType%>" readonly />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <div class="input-wrapper">
+          <input type="number" id="age" value="<%=user.age%>" readonly />
+          <i class="fas fa-pen edit-icon" onclick="enableEdit('age')"></i>
+        </div>
+      </div>
+
+      <div class="form-group" style="grid-column: span 2;">
+        <label for="gender">Gender</label>
+        <div class="input-wrapper">
+          <input type="text" id="genderInput"value="<%=user.gender%>" readonly class="fake-select" />
+          <select id="genderSelect">
+            <option value="Female" selected>Female</option>
+            <option value="Male">Male</option>
+          </select>
+          <i class="fas fa-pen edit-icon" onclick="enableGenderEdit()"></i>
+        </div>
+      </div>
+
+      <button type="submit" class="save-btn" id="saveBtn">Save Changes</button>
+
+    </form>
+  </div>
+</div>
+
+<script>
+   const saveBtn = document.getElementById('saveBtn');
+
+function enableEdit(id) {
+  const input = document.getElementById(id);
+  input.removeAttribute('readonly');
+  input.focus();
+  saveBtn.style.display = 'block';
+}
+
+function enableGenderEdit() {
+  document.getElementById('genderInput').style.display = 'none';
+  document.getElementById('genderSelect').style.display = 'block';
+  document.getElementById('genderSelect').focus();
+  saveBtn.style.display = 'block';
+}
+
+const profileForm = document.getElementById('profileForm');
+const messageBox = document.getElementById('messageBox');
+
+profileForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const updatedData = {
+    fullName: document.getElementById('fullName').value,
+    email: document.getElementById('email').value,
+    age: document.getElementById('age').value,
+    gender: document.getElementById('genderSelect').style.display === 'block'
+      ? document.getElementById('genderSelect').value
+      : document.getElementById('genderInput').value
+  };
+
+  try {
+    const res = await fetch('/profile_info', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData)
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      messageBox.innerText = data.message;
+      messageBox.style.display = 'block';
+      messageBox.style.backgroundColor = '#d4edda';  // green background
+      messageBox.style.color = '#155724';            // dark green text
+      messageBox.style.border = '1px solid #c3e6cb';
+
+      setTimeout(() => {
+        messageBox.style.display = 'none';
+        location.reload();  // Refresh page
+      }, 3000);
+    } else {
+      messageBox.innerText = 'Something went wrong.';
+      messageBox.style.display = 'block';
+      messageBox.style.backgroundColor = '#f8d7da';  // red background
+      messageBox.style.color = '#721c24';            // dark red text
+      messageBox.style.border = '1px solid #f5c6cb';
+    }
+  } catch (err) {
+    console.error(err);
+    messageBox.innerText = 'Failed to update profile.';
+    messageBox.style.display = 'block';
+    messageBox.style.backgroundColor = '#f8d7da';
+    messageBox.style.color = '#721c24';
+    messageBox.style.border = '1px solid #f5c6cb';
+  }
+});
+</script>
+</body>
+</html>

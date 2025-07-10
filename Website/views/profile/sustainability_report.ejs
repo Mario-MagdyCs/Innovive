@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innovive Dashboard - Sustainability Report</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e6f4e6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(to bottom, #66bb6a, #388e3c);
+      width: 240px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      background: #ffffff33;
+      border-radius: 50%;
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .user-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-size: 17px;
+      gap: 12px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #2e7d32;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 240px;
+      flex: 1;
+      background: white;
+      padding: 60px 50px;
+      min-height: 100vh;
+    }
+
+    .page-title {
+      font-size: 34px;
+      color: #2e7d32;
+      margin-bottom: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .stat-card {
+      background: #f9fff9;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 128, 0, 0.15);
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .stat-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .stat-card p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 26px;
+      color: #2e7d32;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .material-breakdown {
+      margin-bottom: 40px;
+    }
+
+    .material-item {
+      margin-bottom: 15px;
+    }
+
+    .material-label {
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 18px;
+      background: #e0f2e9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #66bb6a, #388e3c);
+    }
+
+    canvas {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+      }
+
+      .user-name {
+        display: none;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 10px;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .main-content {
+        margin-left: 70px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="avatar"><%= user.fullName.split(' ').map(n => n[0].toUpperCase()).join('') %></div>
+  <div class="user-name"><%=user.fullName%></div>
+  <nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/profile_info"><i class="fas fa-user"></i> Profile</a>
+    <a href="/sustainability_report" class="active"><i class="fas fa-leaf"></i> Sustainability Report</a>
+    <a href="/recycled_history"><i class="fas fa-recycle"></i> Recycling History</a>
+    <a href="/favourites"><i class="fas fa-star"></i> Favourites</a>
+    <a href="/achievements"><i class="fas fa-trophy"></i> Achievements</a>
+    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h1 class="page-title">Sustainability Report</h1>
+
+ <!-- Quick Stats (Dynamic) -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <h3>♻️ Projects Recycled</h3>
+    <p><%= totalProjects %> Projects</p>
+  </div>
+  <div class="stat-card">
+    <h3>🌿 CO₂ Saved</h3>
+    <p><%= co2Saved %> kg</p>
+  </div>
+  <div class="stat-card">
+    <h3>💧 Water Saved</h3>
+    <p><%= waterSaved %> L</p>
+  </div>
+  <div class="stat-card">
+    <h3>🔥 Streak</h3>
+    <p><%= streak %> Days</p>
+  </div>
+</div>
+
+
+  <!-- Top Materials Breakdown -->
+  <div class="material-breakdown">
+    <h2 class="section-title">Top Materials Breakdown</h2>
+    <% topMaterials.forEach(item => { %>
+      <div class="material-item">
+        <div class="material-label"><%= item.material %> — <%= item.percentage %>%</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"style="width: <%= item.percentage + '%' %>" ></div>
+        </div>
+      </div>
+    <% }) %>
+
+  <!-- Recycling Over Time Chart -->
+  <div>
+    <h2 class="section-title">Recycling Over Time</h2>
+    <canvas id="recyclingChart"></canvas>
+  </div>
+
+</div>
+
+<!-- Chart Script -->
+<script>
+const ctx = document.getElementById('recyclingChart').getContext('2d');
+const recyclingChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+    datasets: [{
+      label: 'Projects Recycled',
+      data: [3, 6, 9, 10],
+      backgroundColor: 'rgba(102, 187, 106, 0.2)',
+      borderColor: '#388e3c',
+      borderWidth: 3,
+      tension: 0.4,
+      pointBackgroundColor: '#66bb6a'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#2e7d32' },
+        grid: { color: '#c8e6c9' }
+      },
+      x: {
+        ticks: { color: '#2e7d32' },
+        grid: { color: '#e0f2e9' }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: { color: '#2e7d32' }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

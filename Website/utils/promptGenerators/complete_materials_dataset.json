@@ -1,0 +1,189 @@
+{
+  "styrofoam_food_containers": {
+    "projects": [
+      {
+        "name": "Seedling Starter Tray",
+        "description": "A tray for planting seeds in small compartments.",
+        "usage": "Gardening, indoor planting."
+      },
+      {
+        "name": "Wall-Mounted Jewelry Holder",
+        "description": "A holder for hanging jewelry, mounted on the wall.",
+        "usage": "Jewelry organization, bedroom decor."
+      }
+    ]
+  },
+  "plastic_straws": {
+    "projects": [
+      {
+        "name": "Decorative Photo Frame",
+        "description": "A colorful frame decorated with plastic straws.",
+        "usage": "Home decoration, photo display."
+      },
+      {
+        "name": "Hanging Mobile",
+        "description": "A creative hanging mobile made from plastic straws.",
+        "usage": "Room decor, nursery decoration."
+      }
+    ]
+  },
+  "plastic_food_container": {
+    "projects": [
+      {
+        "name": "Modular Wall Planters",
+        "description": "Plastic containers used as wall-mounted planters.",
+        "usage": "Vertical gardening, indoor greenery."
+      },
+      {
+        "name": "Craft Supply Box",
+        "description": "A compact box for storing craft supplies.",
+        "usage": "Organizing craft materials."
+      }
+    ]
+  },
+  "plastic_detergent_bottle": {
+    "projects": [
+      {
+        "name": "Watering Can",
+        "description": "A repurposed bottle with a spout for watering plants.",
+        "usage": "Garden tool, plant care."
+      },
+      {
+        "name": "Bird Feeder",
+        "description": "A hanging bird feeder made from a cut bottle.",
+        "usage": "Outdoor decoration, bird feeding."
+      }
+    ]
+  },
+  "plain_cup": {
+    "projects": [
+      {
+        "name": "Mini Planter",
+        "description": "A small plant pot made from a plastic cup.",
+        "usage": "Indoor gardening, succulent planting."
+      },
+      {
+        "name": "Craft Supply Jar",
+        "description": "A cup for storing small craft items.",
+        "usage": "Craft storage, desk organization."
+      }
+    ]
+  },
+  "plastic_bottle": {
+    "projects": [
+      {
+        "name": "Vertical Garden",
+        "description": "Stacked bottles for vertical planting.",
+        "usage": "Indoor or outdoor gardening."
+      },
+      {
+        "name": "Hanging Bird Feeder",
+        "description": "A cut bottle used to feed birds, suspended with string.",
+        "usage": "Garden decoration, bird feeding."
+      }
+    ]
+  },
+  "paper": {
+    "projects": [
+      {
+        "name": "Origami Flowers",
+        "description": "Beautiful paper flowers folded using origami techniques.",
+        "usage": "Home decoration, gift wrapping."
+      },
+      {
+        "name": "Paper Bead Jewelry",
+        "description": "Jewelry created using rolled paper beads.",
+        "usage": "Fashion accessory, handmade crafts."
+      }
+    ]
+  },
+  "glass_jar": {
+    "projects": [
+      {
+        "name": "Mini Terrarium",
+        "description": "A small enclosed garden inside a glass jar.",
+        "usage": "Indoor decoration, plant care."
+      },
+      {
+        "name": "Spice Container",
+        "description": "A transparent jar for storing spices.",
+        "usage": "Kitchen organization, food storage."
+      }
+    ]
+  },
+  "glass_bottle": {
+    "projects": [
+      {
+        "name": "Flower Vase",
+        "description": "A tall glass container for displaying flowers.",
+        "usage": "Home decoration, flower arrangement."
+      },
+      {
+        "name": "Hanging Light Fixture",
+        "description": "A creative lamp made from a glass bottle.",
+        "usage": "Home lighting, decorative light."
+      }
+    ]
+  },
+  "aluminum_soda_can": {
+    "projects": [
+      {
+        "name": "Candle Holder",
+        "description": "A creative candle holder made from a soda can.",
+        "usage": "Home decoration, mood lighting."
+      },
+      {
+        "name": "Pencil Case",
+        "description": "A cylindrical container for storing pencils.",
+        "usage": "Desk organization, stationery storage."
+      }
+    ]
+  },
+  "aluminum_food_can": {
+    "projects": [
+      {
+        "name": "Lantern with Cutouts",
+        "description": "A decorative lantern made from a can with cut designs.",
+        "usage": "Home decoration, mood lighting."
+      },
+      {
+        "name": "Candle Holder",
+        "description": "A creative candle holder made from a soda can.",
+        "usage": "Home decoration, mood lighting."
+      },
+      {
+        "name": "Pencil Case",
+        "description": "A cylindrical container for storing pencils.",
+        "usage": "Desk organization, stationery storage."
+      }
+    ]
+  },
+  "fabric": {
+    "projects": [
+      {
+        "name": "Patchwork Pillow",
+        "description": "A soft pillow created using fabric patches.",
+        "usage": "Home decoration, bedding."
+      },
+      {
+        "name": "Tote Bag",
+        "description": "A reusable fabric bag for carrying items.",
+        "usage": "Shopping, daily use."
+      }
+    ]
+  },
+  "cardboard": {
+    "projects": [
+      {
+        "name": "Storage Drawer",
+        "description": "A lightweight drawer made from cardboard.",
+        "usage": "Home organization, desk storage."
+      },
+      {
+        "name": "DIY Toy House",
+        "description": "A miniature house model made from cardboard.",
+        "usage": "Kids' playtime, model display."
+      }
+    ]
+  }
+}

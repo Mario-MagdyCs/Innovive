@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enthusiast Registration - Step 2</title>
+    <link rel="stylesheet" href="/css/registration.css">
+   
+</head>
+<body>
+    <div class="progress-container">
+        Step 2 of 5
+    </div>
+    <div class="progress-bar" style="width: 40%;">
+        <div class="progress"></div>
+    </div>
+    <div class="container">
+        <h2>Welcome, Enthusiast!</h2>
+        <p class="subtext">Tell us more about yourself to complete your registration.</p>
+        <form id="registration-form" action="/register-enthusiast/step2" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="button-group">
+                <button type="button" class="prev-btn" onclick="goBack()">Previous</button>
+                <button type="submit" class="submit-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "/auth/register"; // Change this to the actual previous step file
+        }
+    </script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

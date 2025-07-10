@@ -1,0 +1,301 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="css/bootstrap.min.css" rel="stylesheet" >
+	<link href="css/font-awesome.min.css" rel="stylesheet" >
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-/+U23...your_hash_here..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="css/upload.css" rel="stylesheet">
+  <script src="/js/bootstrap.bundle.min.js"></script>
+ 
+    <title>
+        Upload Page
+    </title>
+
+    <style>
+      .selectable-card {
+      position: relative;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
+      background: linear-gradient(180deg, #f5f5f5, #eaeaea);
+      padding: 1rem 1.5rem;
+      flex: 1 1 220px;
+      text-align: center;
+      min-width: 200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border: 2px solid transparent;
+    }
+  
+    /* Glow when selected */
+    .selectable-card.selected {
+      box-shadow: 0 0 12px 4px rgba(40, 167, 69, 0.6);
+      border: 2px solid #28a745;
+    }
+  
+    /* Hide checkbox and radio button */
+    .selectable-card input[type="checkbox"],
+    .selectable-card input[type="radio"] {
+      display: none;
+    }
+  
+    /* Content inside the card */
+    .selectable-card span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background-color: transparent;
+      color: #1e4637;
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+      border: none;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+      width: 100%;
+    }
+    </style>
+</head>
+<body>
+       <%- include('partials/header')%>
+      
+        <div class="wrapper">
+         
+          <div class="settings-panel" id="settingsPanel">
+            <div class="settings-close" onclick="toggleSettings()">
+              <i class="fas fa-times"></i>
+            </div>
+          
+            <h3><i class="fa fa-cog"></i> Settings</h3>
+          
+            <div class="setting-group">
+              <label for="numberOfImages">Number of Images</label>
+              <div class="number-buttons">
+                <button type="button" class="number-btn active" data-value="1">1</button>
+                <button type="button" class="number-btn" data-value="2">2</button>
+                <button type="button" class="number-btn" data-value="3">3</button>
+              </div>
+              <input type="hidden" name="numberOfImages" id="numberOfImages" value="1">
+            </div>
+
+            <div class="setting-group">  
+              <label for="category">Categories</label>
+              <div class="category-buttons">
+                <button type="button" class="category-btn active" data-value="Furniture">Furniture</button>
+                <button type="button" class="category-btn" data-value="Storage">Storage</button>
+                <button type="button" class="category-btn" data-value="Office">Office</button>
+                <button type="button" class="category-btn" data-value="Decor">Decor</button>
+              </div>
+              <input type="hidden" name="category" id="category" value="Furniture">
+            </div>
+          
+    
+          </div>
+          
+          <div class="dark-container">
+        
+            <div class="main-area">
+  
+              <div class="intro-section">
+                <h1 class="gradient-text">✨ AI Product Creator ✨</h1>
+                <p>Choose from your available materials and select a product category to see how our AI transforms them into creative, sustainable designs tailored just for you!</p>
+              </div>
+
+              <form id="uploadForm" enctype="multipart/form-data" method="POST" >
+              <div class="upload-action-wrapper">
+                
+                  <div class="upload-action-row" id="uploadActionRow">
+
+                    <section class="card-section">
+                      <h5 style="background: linear-gradient(to bottom, #66bb6a, #388e3c); background-clip: text; -webkit-text-fill-color: transparent;">Select Materials</h5>
+                      <div class="card-container">
+                        <% const materialData = [
+                          { name: 'Plastic', icon: 'fa-recycle' },
+                          { name: 'Metal', icon: 'fa-industry' },
+                          { name: 'Wood', icon: 'fa-tree' },
+                          { name: 'Glass', icon: 'fa-glass-martini' },
+                          { name: 'Fabric/Textiles', icon: 'fa-tshirt' }
+                        ]; %>
+                        <% materialData.forEach(material => { %>
+                          <label class="selectable-card fancy-card">
+                            <input type="checkbox" name="materials" value="<%= material.name %>">
+                            <span><i class="fa <%= material.icon %> icon-left"></i> <%= material.name %></span>
+                          </label>
+                        <% }); %>
+                      </div>
+                    </section>
+
+            
+                
+                    <div class="action-bar">
+                      <div class="settings-icon" onclick="toggleSettings()">
+                        <i class="fas fa-cog"></i>
+                      </div>
+                   
+                      <button class="generate-modern-btn-active" type="submit">
+                        <i class="fas fa-wand-magic-sparkles"></i> Generate
+                      </button>
+                    </div>
+                  </div>
+                
+                
+                
+              
+              </div>
+              </form>
+              <p id="currUser" style="display: none;"><%=currentUser%></p>
+              
+               
+              <div class="generated-projects-section">
+                <% if(currentUser){ %>
+                <div class="new-projects-grid" id="newProjectsGrid">
+                  <!-- New images will be inserted here dynamically -->
+                </div>
+                <% } %>
+                <% if(currentUser && userProjects.length>0){%>
+                  <h4 class="section-title">Previously Generated Projects</h4>
+                <% } %>
+
+                <% if(currentUser && userProjects.length>0 ) {%>
+                <div class="example-gallery" id="exampleGallery">
+                  <% userProjects.forEach(project => { %>
+                    <div class="project-card">
+                      <img src="<%= project.image %>" class="project-image" alt="<%= project.name %>" />
+                        
+                      <div class="icon-buttons">
+                       
+                      </div>
+                      
+                      
+              
+                      <div class="overlay">
+                        <button class="show-info-btn" onclick="window.location.href='/product/<%=project._id%>'">Show Info</button>
+                      </div>
+              
+                      <div class="project-name"><%= project.name %></div>
+                    </div>
+                  <% }) %>
+                </div>
+                <div class="view-more-container">
+                  <button class="view-more-btn" onclick="window.location.href='/recycled_history'">
+                      <span class="view-more-text">View More</span> 
+                      <i class="fas fa-external-link-alt view-more-icon"></i>
+                  </button>
+                </div>
+                <% } %>
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+   
+
+      <div id="toastGreen" class="toastGreen"></div>
+      <div id="toastRed" class="toastRed"></div>
+
+   
+      
+
+        <%- include('partials/footer')%>
+
+          
+
+<script>
+  // Number of Images buttons
+const numberButtons = document.querySelectorAll('.number-btn');
+const numberOfImagesInput = document.getElementById('numberOfImages');
+
+numberButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    numberButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    numberOfImagesInput.value = btn.getAttribute('data-value');
+  });
+});
+
+// Similarity buttons
+const categoryButtons = document.querySelectorAll('.category-btn');
+const categoryInput = document.getElementById('category');
+ categoryButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+   categoryButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    categoryInput.value = btn.getAttribute('data-value');
+  });
+});
+
+</script>
+
+<script>
+  document.querySelectorAll('.selectable-card input[type="checkbox"], .selectable-card input[type="radio"]').forEach(input => {
+    const card = input.closest('.selectable-card');
+
+    // Initialize state
+    if (input.checked) {
+      card.classList.add('selected');
+    }
+
+    input.addEventListener('change', function () {
+      // If this is a radio input
+      if (input.type === 'radio') {
+        // Remove 'selected' from all cards sharing the same name
+        const groupName = input.name;
+        document.querySelectorAll('.selectable-card input[name="' + groupName + '"]').forEach(radio => {
+          const parentCard = radio.closest('.selectable-card');
+          parentCard.classList.remove('selected');
+        });
+
+        // Then add it back only to the newly selected one
+        if (this.checked) {
+          card.classList.add('selected');
+        }
+      }
+
+      // If this is a checkbox input
+      if (input.type === 'checkbox') {
+        if (this.checked) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      }
+    });
+  });
+</script>
+        
+          
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity=
+  "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous">
+</script>
+<script src="./js/select-materials.js"></script>
+
+
+
+
+ 
+
+  
+
+ 
+</body>
+</html>

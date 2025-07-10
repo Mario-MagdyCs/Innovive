@@ -1,0 +1,176 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+/* 
+    background-image: url('../images/New\ Project.png'); Adjust path if needed */
+    background-color: #e6f4e6;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: Keeps it fixed while scrolling */
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    padding: 15px;
+    background: #28a745;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.progress-bar {
+    background: #28a745;
+    height: 6px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+}
+
+.progress {
+    background: #28a745;
+    height: 6px;
+}
+
+/* Container Styles */
+.container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 80px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.subtext {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+.form-group {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+.form-group input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+
+.form-group img {
+    width: 35px; /* Make images smaller */
+    height: 35px;
+    object-fit: contain;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* Button Styles */
+.prev-btn, .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-top: 15px;
+}
+
+.prev-btn {
+    background-color: #ccc;
+}
+
+.prev-btn:hover {
+    background-color: #999;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+
+.register-link {
+    text-align: center;
+    margin-top: 15px; /* Moves it down slightly */
+    font-size: 16px;
+    color: #666;
+}
+
+.register-link a {
+    color: #28a745; /* Matching the theme's green color */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #218838; /* Darker green on hover */
+    text-decoration: underline;
+}
