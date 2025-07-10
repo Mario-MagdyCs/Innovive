@@ -27,7 +27,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/innovive.git
+https://github.com/Mario-MagdyCs/Innovive.git
 
 # Navigate to the project directory
 cd innovive
